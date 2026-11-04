@@ -2,7 +2,7 @@ import { Video } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, Easing, Img, interpolate, random, spring, staticFile, useCurrentFrame } from "remotion";
 import { SCENE_TITLES } from "./edl";
-import { Backdrop } from "./Shot";
+import { Backdrop, SfxAt } from "./Shot";
 import { C, FONT, FPS, H, W } from "./theme";
 
 const B = 15; // frames per beat (120 BPM at 30 fps)
@@ -109,6 +109,7 @@ export const Intro: React.FC = () => {
         </AbsoluteFill>
       )}
       <AbsoluteFill style={{ backgroundColor: "#fff", opacity: frame >= phaseB ? flash : 0 }} />
+      <SfxAt at={4 * B} sfx={{ name: "impact-soft-heavy-000", vol: 0.8 }} />
     </AbsoluteFill>
   );
 };
@@ -166,6 +167,7 @@ export const BeforeCard: React.FC = () => {
           </div>
         </div>
       </AbsoluteFill>
+      <SfxAt at={20} sfx={{ name: "power-up-1", vol: 0.45 }} />
     </AbsoluteFill>
   );
 };
@@ -213,6 +215,7 @@ export const EndCard: React.FC = () => {
         <Pop at={10 * B}>MVP demo · sample data</Pop>
       </div>
       <AbsoluteFill style={{ backgroundColor: "#fff", opacity: flash }} />
+      <SfxAt at={7 * B} sfx={{ name: "jingles-steel-13", vol: 0.4 }} />
     </AbsoluteFill>
   );
 };

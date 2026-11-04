@@ -45,13 +45,13 @@ export const TIMELINE: Seg[] = [
   shot({
     id: "1b-table", scene: 1, start: 16.2, end: 18.6, beats: 4,
     cam: [{ t: 16.2, z: 1.6, x: 0.56, y: 0.33 }, { t: 18.6, z: 1.7, x: 0.56, y: 0.36 }],
-    callouts: [{ from: 16.3, to: 18.6, rect: [0.288, 0.412, 0.555, 0.058], label: "Table fills itself: 22 left, 3 thrown out" }],
+    callouts: [{ from: 16.3, to: 18.6, rect: [0.288, 0.412, 0.555, 0.058], label: "Table fills itself: 22 left, 3 thrown out", sfx: { name: "notification-pop", vol: 0.55 } }],
   }),
   shot({ id: "1c-close", scene: 1, start: 19.6, end: 23.9, beats: 2, cam: [wide(19.6)] }),
   shot({
     id: "1d-waste", scene: 1, start: 24.1, end: 27.4, beats: 6,
     cam: [wide(24.1), { t: 24.8, z: 1.9, x: 0.45, y: 0.45 }],
-    callouts: [{ from: 24.7, to: 27.4, rect: [0.287, 0.41, 0.295, 0.165], label: "Today's waste: 8,400 ₫" }],
+    callouts: [{ from: 24.7, to: 27.4, rect: [0.287, 0.41, 0.295, 0.165], label: "Today's waste: 8,400 ₫", sfx: { name: "handle-coins-2", vol: 1 } }],
     captions: [{ from: 24.3, to: 27.4, text: "Close the day, see the waste" }],
   }),
   shot({
@@ -79,7 +79,7 @@ export const TIMELINE: Seg[] = [
   shot({
     id: "2e-row", scene: 2, start: 74.2, end: 76.6, beats: 4,
     cam: [{ t: 74.2, z: 1.5, x: 0.56, y: 0.62 }, { t: 74.8, z: 1.9, x: 0.56, y: 0.8 }],
-    callouts: [{ from: 74.5, to: 76.6, rect: [0.288, 0.86, 0.555, 0.062], label: "Auto-added: red roses · 50 stems · 140,000 ₫" }],
+    callouts: [{ from: 74.5, to: 76.6, rect: [0.288, 0.86, 0.555, 0.062], label: "Auto-added: red roses · 50 stems · 140,000 ₫", sfx: { name: "confirmation-001", vol: 0.55 } }],
   }),
   shot({
     id: "2f-save", scene: 2, start: 84.6, end: 86.4, beats: 3,
@@ -97,7 +97,7 @@ export const TIMELINE: Seg[] = [
   shot({
     id: "3b-combo", scene: 3, start: 98.4, end: 101.8, beats: 6,
     cam: [{ t: 98.4, z: 1.5, x: 0.68, y: 0.3 }, { t: 99.0, z: 1.9, x: 0.72, y: 0.3 }],
-    callouts: [{ from: 98.7, to: 101.8, rect: [0.608, 0.312, 0.215, 0.042], label: "161,500 ₫ of expiring flowers inside" }],
+    callouts: [{ from: 98.7, to: 101.8, rect: [0.608, 0.312, 0.215, 0.042], label: "161,500 ₫ of expiring flowers inside", sfx: { name: "jingles-steel-08", vol: 0.45 } }],
     captions: [{ from: 98.4, to: 101.8, text: "Expiring flowers → sellable bouquets" }],
   }),
   shot({
@@ -128,7 +128,7 @@ export const TIMELINE: Seg[] = [
     cam: [{ t: 152.6, z: 1.4, x: 0.49, y: 0.5 }, { t: 155.0, z: 1.4, x: 0.49, y: 0.6 }],
     callouts: [
       { from: 152.8, to: 154.4, rect: [0.325, 0.45, 0.325, 0.056] },
-      { from: 155.1, to: 157.4, rect: [0.322, 0.48, 0.335, 0.355], label: "Facebook + Zalo captions, one tap", place: "above" },
+      { from: 155.1, to: 157.4, rect: [0.322, 0.48, 0.335, 0.355], label: "Facebook + Zalo captions, one tap", place: "above", sfx: { name: "notification-pop", vol: 0.55 } },
     ],
   }),
 
@@ -144,9 +144,9 @@ export const TIMELINE: Seg[] = [
     id: "5b-chips", scene: 5, start: 181.8, end: 192.6, beats: 8,
     cam: [{ t: 181.8, z: 1.45, x: 0.5, y: 0.4 }],
     callouts: [
-      { from: 182.6, to: 187.4, rect: [0.287, 0.138, 0.078, 0.04], label: "6 to push today", place: "below" },
-      { from: 188.0, to: 189.8, rect: [0.367, 0.138, 0.066, 0.04], label: "4 running low", place: "below" },
-      { from: 190.0, to: 192.6, rect: [0.438, 0.138, 0.048, 0.04], label: "3 just in", place: "below" },
+      { from: 182.6, to: 187.4, rect: [0.287, 0.138, 0.078, 0.04], label: "6 to push today", place: "below", sfx: { name: "hover-tick", vol: 0.5 } },
+      { from: 188.0, to: 189.8, rect: [0.367, 0.138, 0.066, 0.04], label: "4 running low", place: "below", sfx: { name: "hover-tick", vol: 0.5 } },
+      { from: 190.0, to: 192.6, rect: [0.438, 0.138, 0.048, 0.04], label: "3 just in", place: "below", sfx: { name: "hover-tick", vol: 0.5 } },
     ],
     captions: [{ from: 182.0, to: 192.6, text: "Know what to push, instantly" }],
   }),

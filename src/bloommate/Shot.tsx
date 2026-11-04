@@ -1,10 +1,11 @@
-import { Video } from "@remotion/media";
+import { Audio, Video } from "@remotion/media";
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, spring, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, Sequence, interpolate, spring, staticFile, useCurrentFrame } from "remotion";
 import { Cam, Rect, cameraAt, clampCam, toScreen } from "./camera";
 import { C, FONT, FPS, H, W } from "./theme";
 
-export type Callout = { from: number; to: number; rect: Rect; label?: string; place?: "above" | "below" | "left" | "right" };
+export type Sfx = { name: string; vol: number };
+export type Callout = { from: number; to: number; rect: Rect; label?: string; place?: "above" | "below" | "left" | "right"; sfx?: Sfx };
 export type Caption = { from: number; to: number; text: string };
 export type ShotDef = {
   id: string;
@@ -71,6 +72,10 @@ export const Shot: React.FC<{ shot: ShotDef }> = ({ shot }) => {
       ))}
       <SceneChip scene={shot.scene} />
       {shot.scene === 6 ? <Disclaimer /> : null}
+      {shot.callouts?.map((c, i) =>
+        c.sfx ? <SfxAt key={`sfx${i}`} at={Math.max(0, Math.round(((c.from - shot.start) / shot.rate) * FPS) + 4)} sfx={c.sfx} /> : null,
+      )}
+      {shot.bigStat ? <BigStatSfx at={Math.max(0, Math.round(((shot.bigStat.from - shot.start) / shot.rate) * FPS))} /> : null}
     </AbsoluteFill>
   );
 };
@@ -158,6 +163,7 @@ const BigStat: React.FC<{ v: number; age: number }> = ({ v, age }) => {
   const count = interpolate(age, [10, 34], [96000, 79300], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const arrow = interpolate(age, [6, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const drop = Math.round(((96000 - count) / 96000) * 100);
+  const badge = spring({ frame: age - 34, fps: FPS, config: { damping: 10, stiffness: 180 } });
   return (
     <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", backgroundColor: `rgba(30,20,16,${0.4 * v})` }}>
       <div
@@ -180,7 +186,7 @@ const BigStat: React.FC<{ v: number; age: number }> = ({ v, age }) => {
             <div style={{ fontSize: 28, fontWeight: 500, color: C.inkSoft }}>last 25 days</div>
           </div>
         </div>
-        <div style={{ marginTop: 22, display: "inline-block", fontSize: 30, fontWeight: 800, color: "#fff", backgroundColor: C.green, padding: "8px 22px", borderRadius: 999, opacity: arrow }}>
+        <div style={{ marginTop: 22, display: "inline-block", fontSize: 30, fontWeight: 800, color: "#fff", backgroundColor: C.green, padding: "8px 22px", borderRadius: 999, opacity: badge, transform: `scale(${0.6 + 0.4 * badge})` }}>
           −{drop}% per day
         </div>
       </div>
@@ -211,3 +217,20 @@ const Disclaimer: React.FC = () => (
   </div>
 );
 
+
+// One-shot sound effect placed at a frame of the current sequence
+export const SfxAt: React.FC<{ at: number; sfx: Sfx }> = ({ at, sfx }) => (
+  <Sequence from={at} layout="none" name={`sfx ${sfx.name}`}>
+    <Audio src={staticFile(`sfx/${sfx.name}.mp3`)} volume={sfx.vol} />
+  </Sequence>
+);
+
+// Counter ticks while 96,000 counts down to 79,300, then a success chime when the count lands
+const BigStatSfx: React.FC<{ at: number }> = ({ at }) => (
+  <>
+    {Array.from({ length: 8 }).map((_, i) => (
+      <SfxAt key={i} at={at + 10 + i * 3} sfx={{ name: "tick-001", vol: 0.35 - i * 0.02 }} />
+    ))}
+    <SfxAt at={at + 34} sfx={{ name: "success-chime", vol: 0.6 }} />
+  </>
+);
