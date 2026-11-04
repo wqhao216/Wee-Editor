@@ -46,3 +46,12 @@ node scripts/voiceover/voiceover.mjs check                      # nghe lại b�
 
 Mặc định model `eleven_multilingual_v2`, thêm `--model eleven_v3` để đổi. Tốc độ đọc giữ mặc định, không tự tăng.
 Trong session cloud, chạy với `NODE_USE_ENV_PROXY=1` để Node đi qua proxy.
+
+### Gói Free: tạo 1 lần trên web rồi tách
+
+Gói Free không dùng giọng Voice Library qua API. Cách khác: dán cả 8 block vào web ElevenLabs một lần, tải 1 file, rồi tách.
+
+```bash
+node scripts/voiceover/voiceover.mjs paste                 # in đoạn văn bản để copy (có thẻ ngắt giữa các block)
+node scripts/voiceover/voiceover.mjs split <file-da-tai.mp3>   # tách ra vo/01..08.mp3 + vo_full.mp3 + bảng thời lượng
+```

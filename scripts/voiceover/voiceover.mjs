@@ -5,10 +5,13 @@
 //   node scripts/voiceover/voiceover.mjs generate <voiceId>        tạo 01..08.mp3 + vo_full.mp3 + bảng thời lượng
 //   node scripts/voiceover/voiceover.mjs build                     chỉ nối lại vo_full.mp3 và in bảng
 //   node scripts/voiceover/voiceover.mjs check                     nghe lại bằng speech-to-text, so với kịch bản
+//   node scripts/voiceover/voiceover.mjs paste                     in 8 block thành một đoạn để dán 1 lần vào web ElevenLabs
+//   node scripts/voiceover/voiceover.mjs split <file.mp3>          tách file 1 lần đọc thành vo/01..08.mp3 theo khoảng lặng
+//                                                                  (tuỳ chọn --min-silence 1.0 --noise -40)
 //
 // Tuỳ chọn: --model eleven_multilingual_v2 (mặc định) hoặc eleven_v3
 // Cần biến môi trường ELEVENLABS_API_KEY.
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import ffmpegPath from "ffmpeg-static";
@@ -148,6 +151,51 @@ async function check() {
   console.log("Lưu ý: đây là máy nghe lại. Sai dấu tiếng Việt kiểu nhẹ (ví dụ ngã/hỏi) vẫn nên nghe tai để chắc.");
 }
 
+// ---------- paste / split: dùng khi tạo 1 lần trên web ElevenLabs ----------
+// Giữa các block chèn một thẻ ngắt <break time="1.5s" />. Đây là thẻ điều khiển, không được đọc ra thành chữ.
+const BREAK = '<break time="1.5s" />';
+
+function pasteText() {
+  return BLOCKS.map((b) => b.text).join(`\n\n${BREAK}\n\n`);
+}
+
+function detectSilences(file, noise, minSilence) {
+  const r = spawnSync(ffmpegPath, ["-hide_banner", "-i", file, "-af", `silencedetect=noise=${noise}dB:d=${minSilence}`, "-f", "null", "-"], { encoding: "utf8" });
+  const starts = [...r.stderr.matchAll(/silence_start: (-?[\d.]+)/g)].map((m) => Math.max(0, parseFloat(m[1])));
+  const ends = [...r.stderr.matchAll(/silence_end: ([\d.]+)/g)].map((m) => parseFloat(m[1]));
+  return starts.map((s, i) => ({ start: s, end: ends[i] ?? Infinity }));
+}
+
+async function split(file, noise, minSilence) {
+  if (!file || !existsSync(file)) throw new Error(`Không thấy file: ${file ?? "(chưa nhập)"}`);
+  const total = await duration(file);
+  const silences = detectSilences(file, noise, minSilence);
+  const segments = [];
+  let cursor = 0;
+  for (const s of silences) {
+    if (s.start - cursor > 0.2) segments.push([cursor, s.start]);
+    cursor = Math.min(s.end, total);
+  }
+  if (total - cursor > 0.2) segments.push([cursor, total]);
+
+  if (segments.length !== BLOCKS.length) {
+    console.error(`Tìm thấy ${segments.length} đoạn, cần ${BLOCKS.length}. Không tách để tránh cắt sai.`);
+    console.error(`Các khoảng lặng dài ≥ ${minSilence}s đã phát hiện:`);
+    for (const s of silences) console.error(`  ${s.start.toFixed(2)}s -> ${Number.isFinite(s.end) ? s.end.toFixed(2) : "hết file"}s`);
+    console.error(`\nThử: --min-silence ${(minSilence * 0.7).toFixed(1)} (nếu thiếu đoạn) hoặc --min-silence ${(minSilence * 1.5).toFixed(1)} (nếu thừa đoạn).`);
+    process.exit(1);
+  }
+  const PAD = 0.05;
+  for (const [i, [a, b]] of segments.entries()) {
+    const out = join(OUT, `${BLOCKS[i].id}.mp3`);
+    execFileSync(ffmpegPath, ["-y", "-loglevel", "error", "-i", file, "-ss", String(Math.max(0, a - PAD)), "-to", String(Math.min(total, b + PAD)), "-c:a", "libmp3lame", "-b:a", "128k", out]);
+    console.log(`Đã tạo vo/${BLOCKS[i].id}.mp3  (${a.toFixed(2)}s -> ${b.toFixed(2)}s trong file gốc)`);
+  }
+  concat();
+  await table();
+  console.log("\nĐoạn nào trong vo/ nghe bị cắt cụt hoặc lẫn tiếng block khác thì báo lại, đừng dùng.");
+}
+
 // ---------- commands ----------
 mkdirSync(OUT, { recursive: true });
 if (cmd === "voices") await listVoices();
@@ -171,5 +219,7 @@ else if (cmd === "preview") {
   concat();
   await table();
 } else if (cmd === "build") { concat(); await table(); }
+else if (cmd === "paste") { console.log(pasteText()); }
+else if (cmd === "split") await split(rest[0], flag("noise", "-40"), parseFloat(flag("min-silence", "1.0")));
 else if (cmd === "check") await check();
 else { console.log(readFileSync(new URL(import.meta.url)).toString().split("\n").slice(0, 10).join("\n")); process.exit(cmd ? 1 : 0); }
