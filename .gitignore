@@ -1,3 +1,5 @@
 node_modules/
 out/
 .remotion/
+public/source.mp4
+vo/

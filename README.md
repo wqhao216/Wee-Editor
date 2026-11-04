@@ -55,3 +55,25 @@ Gói Free không dùng giọng Voice Library qua API. Cách khác: dán cả 8 b
 node scripts/voiceover/voiceover.mjs paste                 # in đoạn văn bản để copy (có thẻ ngắt giữa các block)
 node scripts/voiceover/voiceover.mjs split <file-da-tai.mp3>   # tách ra vo/01..08.mp3 + vo_full.mp3 + bảng thời lượng
 ```
+
+## Video demo MVP BloomMate
+
+Dựng bằng Remotion từ bản quay màn hình trong `source/`. Kết quả: `out/BloomMate_Demo_MVP.mp4` (1920×1080, khoảng 1 phút 26 giây).
+
+### Chạy lại trên máy
+
+```bash
+git lfs pull
+ffmpeg -i "source/Quay màn hình 2026-11-04 200042.mp4" -t 225 -an -c:v libx264 -preset veryfast -crf 18 -g 15 -pix_fmt yuv420p public/source.mp4
+npx remotion studio src/index.ts
+npx remotion render src/index.ts BloomMateDemo out/BloomMate_Demo_MVP.mp4 --crf=18
+```
+
+Lệnh `ffmpeg` tạo bản video dễ tua (`public/source.mp4`, không commit vì nặng).
+
+### Sửa ở đâu
+
+- `src/bloommate/edl.ts`: danh sách cảnh. Mỗi cảnh ghi đoạn cắt (giây trên bản quay), tốc độ, điểm zoom, khung chú thích và chữ dưới màn. Muốn đổi chữ hay số thì sửa ở đây.
+- `src/bloommate/Cards.tsx`: thẻ mở đầu, thẻ "ảnh gốc", thẻ kết.
+- `src/bloommate/theme.ts`: màu, font Be Vietnam Pro.
+- `public/music.mp3`: nhạc nền, tự sáng tác bằng `scripts/music/compose.mjs`. Thay bằng bài khác thì giữ nguyên tên file.
