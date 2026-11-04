@@ -1,0 +1,4 @@
+source/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+source/**/*.mov filter=lfs diff=lfs merge=lfs -text
+source/**/*.webm filter=lfs diff=lfs merge=lfs -text
+source/**/*.mkv filter=lfs diff=lfs merge=lfs -text
