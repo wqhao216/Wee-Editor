@@ -5,6 +5,7 @@
 //   node scripts/voiceover/voiceover.mjs generate <voiceId>        tạo 01..08.mp3 + vo_full.mp3 + bảng thời lượng
 //   node scripts/voiceover/voiceover.mjs build                     chỉ nối lại vo_full.mp3 và in bảng
 //   node scripts/voiceover/voiceover.mjs check                     nghe lại bằng speech-to-text, so với kịch bản
+//   (thêm --tags --model eleven_v3 vào preview/generate/paste để dùng bản có audio tag)
 //   node scripts/voiceover/voiceover.mjs paste                     in 8 block thành một đoạn để dán 1 lần vào web ElevenLabs
 //   node scripts/voiceover/voiceover.mjs split <file.mp3>          tách file 1 lần đọc thành vo/01..08.mp3 theo khoảng lặng
 //                                                                  (tuỳ chọn --min-silence 1.0 --noise -40)
@@ -16,7 +17,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import ffmpegPath from "ffmpeg-static";
 import { ALL_FORMATS, BufferSource, Input } from "mediabunny";
-import { BLOCKS, NUMBER_PHRASES } from "./script.mjs";
+import { BLOCKS, NUMBER_PHRASES, TAGGED } from "./script.mjs";
 
 const API = "https://api.elevenlabs.io";
 const OUT = join(process.cwd(), "vo");
@@ -28,7 +29,12 @@ const VOICE_SETTINGS = { stability: 0.5, similarity_boost: 0.75, style: 0.2, use
 const args = process.argv.slice(2);
 const flag = (name, def) => { const i = args.indexOf(`--${name}`); return i >= 0 ? args.splice(i, 2)[1] : def; };
 const MODEL = flag("model", "eleven_multilingual_v2");
+const TAGS = (() => { const i = args.indexOf("--tags"); if (i < 0) return false; args.splice(i, 1); return true; })();
 const [cmd, ...rest] = args;
+const textFor = (b) => (TAGS ? TAGGED[b.id] : b.text);
+if (TAGS && ["generate", "preview"].includes(cmd) && MODEL !== "eleven_v3") {
+  console.error("--tags chỉ dùng với Eleven v3. Thêm: --model eleven_v3"); process.exit(1);
+}
 
 function key() {
   const k = process.env.ELEVENLABS_API_KEY;
@@ -156,7 +162,8 @@ async function check() {
 const BREAK = '<break time="1.5s" />';
 
 function pasteText() {
-  return BLOCKS.map((b) => b.text).join(`\n\n${BREAK}\n\n`);
+  // v3 không hiểu <break>, dùng [pause]. Khoảng lặng v3 không chỉnh được độ dài, nên split có thể cần --min-silence thấp hơn.
+  return BLOCKS.map(textFor).join(`\n\n${TAGS ? "[pause]" : BREAK}\n\n`);
 }
 
 function detectSilences(file, noise, minSilence) {
@@ -206,7 +213,7 @@ else if (cmd === "preview") {
   for (const v of rest) {
     await ensureVoice(v);
     const f = join(OUT, "preview", `08_${v}.mp3`);
-    await tts(v, b8.text, f);
+    await tts(v, textFor(b8), f);
     console.log(`Đã tạo ${f} (${(await duration(f)).toFixed(2)}s)`);
   }
   console.log("\nNghe 2 file trên rồi chọn giọng. Chưa chạy hàng loạt.");
@@ -214,7 +221,7 @@ else if (cmd === "preview") {
   const [v] = rest;
   if (!v) { console.error("Cần voice_id: generate <voiceId>"); process.exit(1); }
   await ensureVoice(v);
-  for (const b of BLOCKS) { await tts(v, b.text, join(OUT, `${b.id}.mp3`)); console.log(`Đã tạo vo/${b.id}.mp3`); }
+  for (const b of BLOCKS) { await tts(v, textFor(b), join(OUT, `${b.id}.mp3`)); console.log(`Đã tạo vo/${b.id}.mp3`); }
   writeFileSync(join(OUT, "settings.json"), JSON.stringify({ voice_id: v, model_id: MODEL, voice_settings: VOICE_SETTINGS, created: new Date().toISOString() }, null, 2));
   concat();
   await table();
