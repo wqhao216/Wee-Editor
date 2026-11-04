@@ -229,7 +229,7 @@ export const SfxAt: React.FC<{ at: number; sfx: Sfx }> = ({ at, sfx }) => (
 const BigStatSfx: React.FC<{ at: number }> = ({ at }) => (
   <>
     {Array.from({ length: 8 }).map((_, i) => (
-      <SfxAt key={i} at={at + 10 + i * 3} sfx={{ name: "tick-001", vol: 0.35 - i * 0.02 }} />
+      <SfxAt key={i} at={at + 10 + i * 3} sfx={{ name: "tick-001", vol: 0.8 - i * 0.03 }} />
     ))}
     <SfxAt at={at + 34} sfx={{ name: "success-chime", vol: 0.6 }} />
   </>

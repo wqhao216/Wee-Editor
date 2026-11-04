@@ -109,7 +109,7 @@ export const Intro: React.FC = () => {
         </AbsoluteFill>
       )}
       <AbsoluteFill style={{ backgroundColor: "#fff", opacity: frame >= phaseB ? flash : 0 }} />
-      <SfxAt at={4 * B} sfx={{ name: "impact-soft-heavy-000", vol: 0.8 }} />
+      <SfxAt at={4 * B} sfx={{ name: "impact-soft-heavy-000", vol: 0.6 }} />
     </AbsoluteFill>
   );
 };

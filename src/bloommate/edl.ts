@@ -144,9 +144,9 @@ export const TIMELINE: Seg[] = [
     id: "5b-chips", scene: 5, start: 181.8, end: 192.6, beats: 8,
     cam: [{ t: 181.8, z: 1.45, x: 0.5, y: 0.4 }],
     callouts: [
-      { from: 182.6, to: 187.4, rect: [0.287, 0.138, 0.078, 0.04], label: "6 to push today", place: "below", sfx: { name: "hover-tick", vol: 0.5 } },
-      { from: 188.0, to: 189.8, rect: [0.367, 0.138, 0.066, 0.04], label: "4 running low", place: "below", sfx: { name: "hover-tick", vol: 0.5 } },
-      { from: 190.0, to: 192.6, rect: [0.438, 0.138, 0.048, 0.04], label: "3 just in", place: "below", sfx: { name: "hover-tick", vol: 0.5 } },
+      { from: 182.6, to: 187.4, rect: [0.287, 0.138, 0.078, 0.04], label: "6 to push today", place: "below", sfx: { name: "hover-tick", vol: 0.75 } },
+      { from: 188.0, to: 189.8, rect: [0.367, 0.138, 0.066, 0.04], label: "4 running low", place: "below", sfx: { name: "hover-tick", vol: 0.75 } },
+      { from: 190.0, to: 192.6, rect: [0.438, 0.138, 0.048, 0.04], label: "3 just in", place: "below", sfx: { name: "hover-tick", vol: 0.75 } },
     ],
     captions: [{ from: 182.0, to: 192.6, text: "Know what to push, instantly" }],
   }),
