@@ -32,3 +32,17 @@ FFmpeg dùng được từ code qua `ffmpeg-static`. Muốn gõ lệnh `ffmpeg` 
 - `src/index.ts`, `src/Root.tsx`: đăng ký các video (Composition) của Remotion
 - `src/HelloVideo.tsx`: video mẫu 3 giây, khổ dọc 1080x1920
 - `scripts/check.mjs`: kiểm tra cài đặt
+
+## Voiceover tiếng Việt (ElevenLabs)
+
+Kịch bản nằm ở `scripts/voiceover/script.mjs`. Cần biến môi trường `ELEVENLABS_API_KEY`.
+
+```bash
+node scripts/voiceover/voiceover.mjs voices                     # liệt kê giọng hỗ trợ tiếng Việt
+node scripts/voiceover/voiceover.mjs preview <voiceA> <voiceB>  # đọc thử BLOCK_08 bằng 2 giọng -> vo/preview/
+node scripts/voiceover/voiceover.mjs generate <voiceId>         # vo/01..08.mp3 + vo/vo_full.mp3 + bảng thời lượng
+node scripts/voiceover/voiceover.mjs check                      # nghe lại bằng speech-to-text, so với kịch bản
+```
+
+Mặc định model `eleven_multilingual_v2`, thêm `--model eleven_v3` để đổi. Tốc độ đọc giữ mặc định, không tự tăng.
+Trong session cloud, chạy với `NODE_USE_ENV_PROXY=1` để Node đi qua proxy.
