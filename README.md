@@ -58,22 +58,26 @@ node scripts/voiceover/voiceover.mjs split <file-da-tai.mp3>   # tách ra vo/01.
 
 ## Video demo MVP BloomMate
 
-Dựng bằng Remotion từ bản quay màn hình trong `source/`. Kết quả: `out/BloomMate_Demo_MVP.mp4` (1920×1080, khoảng 1 phút 26 giây).
+Dựng bằng Remotion từ bản quay màn hình trong `source/`. Kết quả: `out/BloomMate_Demo_MVP_v2.mp4` (1920×1080, 73,5 giây, chữ tiếng Anh).
+
+Nhạc 120 BPM: 1 phách = 0,5 giây = 15 khung hình. Mọi đoạn trong video được tính bằng số phách, nên mọi điểm cắt đều rơi đúng phách.
 
 ### Chạy lại trên máy
 
 ```bash
 git lfs pull
 ffmpeg -i "source/Quay màn hình 2026-11-04 200042.mp4" -t 225 -an -c:v libx264 -preset veryfast -crf 18 -g 15 -pix_fmt yuv420p public/source.mp4
+node scripts/music/compose-energetic.mjs music.wav
+ffmpeg -i music.wav -b:a 192k public/music.mp3
 npx remotion studio src/index.ts
-npx remotion render src/index.ts BloomMateDemo out/BloomMate_Demo_MVP.mp4 --crf=18
+npx remotion render src/index.ts BloomMateDemo out/BloomMate_Demo_MVP_v2.mp4 --crf=18
 ```
 
-Lệnh `ffmpeg` tạo bản video dễ tua (`public/source.mp4`, không commit vì nặng).
+Lệnh `ffmpeg` đầu tạo bản video dễ tua (`public/source.mp4`, không commit vì nặng).
 
 ### Sửa ở đâu
 
-- `src/bloommate/edl.ts`: danh sách cảnh. Mỗi cảnh ghi đoạn cắt (giây trên bản quay), tốc độ, điểm zoom, khung chú thích và chữ dưới màn. Muốn đổi chữ hay số thì sửa ở đây.
-- `src/bloommate/Cards.tsx`: thẻ mở đầu, thẻ "ảnh gốc", thẻ kết.
-- `src/bloommate/theme.ts`: màu, font Be Vietnam Pro.
-- `public/music.mp3`: nhạc nền, tự sáng tác bằng `scripts/music/compose.mjs`. Thay bằng bài khác thì giữ nguyên tên file.
+- `src/bloommate/edl.ts`: timeline. Mỗi cảnh ghi đoạn cắt (giây trên bản quay), số phách, điểm zoom, khung chú thích và chữ dưới màn. Đổi số phách thì nhạc cũng phải tạo lại (bước `compose-energetic`) để hiệu ứng nhạc khớp điểm cắt.
+- `src/bloommate/Cards.tsx`: mở đầu, thẻ tiêu đề từng bước, thẻ "original photo", thẻ kết với tagline.
+- `src/bloommate/Shot.tsx`: camera, khung chú thích, chữ dưới màn, thẻ số liệu.
+- `public/music.mp3`: nhạc tự tổng hợp bằng `scripts/music/compose-energetic.mjs` (bản nhẹ cũ: `scripts/music/compose.mjs`). Thay bằng bài khác thì giữ tên file, chọn bài 120 BPM để vẫn khớp phách.
