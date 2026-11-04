@@ -147,6 +147,6 @@ export const SHOTS: ShotDef[] = [
   {
     id: "6c-next", scene: 6, start: 220.0, end: 222.8, rate: 1,
     cam: [{ t: 220.0, z: 1.4, x: 0.56, y: 0.75 }],
-    callouts: [{ from: 221.0, to: 222.7, rect: [0.288, 0.655, 0.555, 0.29], label: "Gợi ý: giảm mức bày hồng đỏ, tăng cẩm chướng" }],
+    captions: [{ from: 220.4, to: 222.8, text: "Gợi ý: giảm mức bày hồng đỏ, tăng cẩm chướng" }],
   },
 ];

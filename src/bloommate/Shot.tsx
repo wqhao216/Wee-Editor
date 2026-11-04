@@ -204,7 +204,7 @@ export const SceneChip: React.FC<{ scene: number; frame: number }> = ({ scene, f
 };
 
 const Disclaimer: React.FC = () => (
-  <div style={{ position: "absolute", right: 36, bottom: 24, fontFamily: FONT, fontWeight: 500, fontSize: 22, color: C.inkSoft, backgroundColor: "rgba(255,255,255,0.9)", padding: "8px 16px", borderRadius: 10 }}>
+  <div style={{ position: "absolute", right: 36, top: 30, fontFamily: FONT, fontWeight: 500, fontSize: 22, color: C.inkSoft, backgroundColor: "rgba(255,255,255,0.9)", padding: "8px 16px", borderRadius: 10 }}>
     Số liệu mẫu minh hoạ, không phải kết quả pilot
   </div>
 );
