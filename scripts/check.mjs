@@ -23,7 +23,8 @@ for (const [label, name] of pkgs) {
   try { console.log(`OK   ${label.padEnd(22)} ${name}@${version(name)}`); }
   catch (e) { ok = false; console.log(`FAIL ${label.padEnd(22)} ${name}: ${e.message}`); }
 }
-for (const [label, dir] of [["Remotion Skills", "remotion-best-practices"], ["Motion AI Kit", "motion"], ["GSAP Skills", "gsap-core"]]) {
+for (const [label, dir] of [["Remotion Skills", "remotion-best-practices"], ["Motion AI Kit", "motion"], ["GSAP Skills", "gsap-core"],
+  ["Social Media Research", "outlier-post-finder"], ["OpenCreator Skills", "krillinai-cli"]]) {
   const p = join(import.meta.dirname, "../.claude/skills", dir, "SKILL.md");
   console.log(`${existsSync(p) ? "OK  " : (ok = false, "FAIL")} ${label.padEnd(22)} .claude/skills/${dir}`);
 }
