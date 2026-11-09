@@ -32,3 +32,4 @@ FFmpeg dùng được từ code qua `ffmpeg-static`. Muốn gõ lệnh `ffmpeg` 
 - `src/index.ts`, `src/Root.tsx`: đăng ký các video (Composition) của Remotion
 - `src/HelloVideo.tsx`: video mẫu 3 giây, khổ dọc 1080x1920
 - `scripts/check.mjs`: kiểm tra cài đặt
+- `source/`: video và tư liệu gốc (Git LFS), video quay màn hình ở `source/screen-recordings/`. Xem `source/README.md`
