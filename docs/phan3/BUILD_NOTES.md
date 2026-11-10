@@ -98,3 +98,39 @@ python3 -I scripts/phan3/check_stage2.py                                        
 - Bố cục: khối chữ 8 bước nằm trong x 96–720 (dòng trả lời B5 tự co còn 59px), sub ≤ 2 dòng, phụ đề ≤ 2 dòng; ≤ 2 khung khoanh cùng lúc, mỗi khung ≥ 2s; không chip nào che khung khoanh.
 - Khung khoanh đúng chỗ: 34/34 lệch 0px so với vùng `box_src` trên khung gốc (template matching). "CHỈ GÕ TÊN RIÊNG" điểm khớp 0.80 do con trỏ gõ và viền khung ① đè mép, đã xem bằng mắt.
 - OCR (tesseract vie): các dòng bị đọc lệch đều đã xem bằng mắt, dấu hiển thị đúng; lệch do tesseract nhầm "a" của Be Vietnam Pro thành "ơ/ô", "I" thành "l".
+
+## Chặng 3 · Ghép toàn bài (animatic, chưa có giọng, chưa có nhạc)
+
+```
+npx esbuild scripts/phan3/check_timeline.ts --bundle --platform=node --format=esm \
+  --outfile=work/check_timeline.mjs --alias:remotion=./scripts/phan3/remotion-stub.ts && node work/check_timeline.mjs
+node scripts/phan3/render_video.mjs out/phan3_v2_animatic.mp4      # ~26 phút trên máy 4 nhân
+python3 -I scripts/phan3/contact_sheet.py out/phan3_v2_animatic.mp4
+python3 -I scripts/phan3/ocr_render.py out/phan3_v2_animatic.mp4
+```
+
+- `out/phan3_v2_animatic.mp4`: H.264 High, 1920×1080, 30 fps, 5100 khung = 170.000 s, không track âm thanh. Phụ đề theo `phan3_vo_draft.srt`.
+- **Còn phải sửa ở bản cuối:** pixel format ra `yuvj420p` (dải màu đầy đủ, do Remotion ghép từ ảnh JPEG); plan mục 1 yêu cầu `yuv420p`.
+- Tự kiểm timeline (`qa/stage3_timeline_check.txt`): đạt hết. Tổng 170 s; đoạn cảnh liền nhau; 0 khung lấy từ đoạn cấm (kể cả card đang trượt), khung gốc gần đoạn cấm nhất cách 3 khung; khung gốc muộn nhất 340.5 s (trang xác nhận, không có cảnh bấm Nộp); 34 khung khoanh đều trên đoạn có video của đúng bước, nằm trọn trong vùng video đang thấy, khớp `src_visible_at_t_in` 34/34, ngắn nhất 2.0 s, tối đa 2 cùng lúc; 20 đoạn tua > 1.2× đều có speedTag; 2 chapterWipe.
+
+### Cú bấm (clickRipple): đo lại trên khung gốc, lệch so với plan
+Mốc gốc lấy ở khung cuối con trỏ còn trên nút, trước khi giao diện đổi; mốc ra tự tính theo EDL.
+
+| Cú bấm | Plan (gốc / ra) | Đo được (gốc / ra) | Tọa độ gốc |
+|---|---|---|---|
+| Bắt đầu | 23.2 / 0:17.2 (hai số này không khớp nhau) | 23.0 / 0:17.62 | (1519, 358) |
+| Tích ô vuông | 117.6 / 0:52.7 | **118.45 / 0:53.55** (117.6 trang còn đang cuộn) | (697, 675) |
+| Cập nhật chính | 120.5 / 0:55.6 | **119.3 / 0:54.40** (120.5 là lúc trang tải lại xong) | (769, 775) |
+| Kiểm tra trùng tên | 177.0 / 1:13.9 | 176.95 / 1:13.85 | (1477, 486) |
+| Giống địa chỉ trụ sở chính | 262.3 / 1:54.2 | 262.33 / 1:54.16 | (676, 468) |
+| Chuẩn bị | 321.9 / 2:27.6 | 322.0 / 2:27.70 | (916, 438) |
+
+- Dòng báo lỗi B8 hiện ở gốc 322.067 = ra **2:27.767** (plan: 2:27.7). Mốc chạy lại "xong." (và mốc cắt nhạc + error_buzz ở chặng âm thanh) dùng 2:27.767.
+- pulse: B1 0:10.1 đỏ trên dòng "Đăng ký cấp lại…"; B4 1:13.6 màu accent trên nút Kiểm tra trùng tên (plan không ghi màu); B8 2:23.3 8 dấu tích lần lượt cách 120 ms (tọa độ đo ở gốc 320.8: x 396–417, y 244…439). Pulse B8 rơi vào đoạn dừng hình: theo mục 8 (mục 2.5 ghi pulse "dùng lúc video đang chạy").
+- badgeCount ①…⑧ B2 0:19.3–0:22.4 tại x gốc 378 (theo plan), huy hiệu lấn mép trái card khoảng 7 px.
+- Bộ đếm "8/8 ✓" B8 2:23.3–2:25.4 góc trên phải, chữ ok trên nền trắng mờ.
+
+### OCR bản animatic (`qa/ocr_animatic_report.txt`, mỗi 3 khung, 1700 khung)
+- Không có cờ họ tên, SĐT, số định danh, email, số nhà, ngày sinh.
+- `at` (559 khung): cờ sai, đã xem theo cụm vị trí: dãy chấm tiến độ, nút "?", mũi tên dropdown, nút radio, số ① trong nhãn, ô vốn.
+- Hai dòng blocklist tỉnh/phường: trường trụ sở và địa chỉ thuế (nhóm đã quyết giữ theo plan 6.3) và danh sách thả xuống chọn tỉnh đang mở ở 1:32.4–1:32.7, 2:11.0–2:11.2 (danh sách chung, dòng đang chọn nằm trong vùng mosaic; plan 6.3 chấp nhận).
