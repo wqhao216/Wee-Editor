@@ -1,0 +1,1213 @@
+{
+ "note": "Mốc t là giây RA của video. gain_db so với mức tham chiếu 0 dB = mức giọng đọc; extra_db cộng thêm.",
+ "sample_rate": 48000,
+ "events": [
+  {
+   "t": 0.3,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn chương S00",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 4.4,
+   "kind": "wipe",
+   "file": "whoosh_wipe",
+   "gain_db": -18,
+   "src": "chapterWipe",
+   "audible_s": 0.7121
+  },
+  {
+   "t": 5.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B1",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 6.2,
+   "kind": "card_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardIn G1",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 6.6,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B1 “ĐĂNG NHẬP VNeID”",
+   "group": "callout0",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 6.6,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B1 “ĐĂNG NHẬP VNeID”",
+   "group": "callout0",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 8.8,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×1.3 (B1)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 12.8,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 13.1,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B1 “CHỌN DÒNG NÀY”",
+   "group": "callout1",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 13.1,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B1 “CHỌN DÒNG NÀY”",
+   "group": "callout1",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 13.2,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B1 “DỄ BẤM NHẦM”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 15.5,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2.4 (B1)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 17.6186,
+   "kind": "click",
+   "file": "click",
+   "gain_db": -22,
+   "src": "clickRipple “Bắt đầu”",
+   "audible_s": 0.0465
+  },
+  {
+   "t": 19.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B2",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 19.3,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 1",
+   "extra_db": 0,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.38,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 2",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.46,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 3",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.54,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 4",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.62,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 5",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.7,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 6",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.78,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 7",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 19.86,
+   "kind": "badge",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "badge 8",
+   "extra_db": -3,
+   "group": "badges",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 22.5,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×5 (B2)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 25.5,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 25.9,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B2 “ĐANG ĐỂ SẴN CẦN THƠ”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 27.0,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B2 “CHỈ CÒN TỈNH + PHƯỜNG/XÃ”",
+   "group": "callout5",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 27.0,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B2 “CHỈ CÒN TỈNH + PHƯỜNG/XÃ”",
+   "group": "callout5",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 29.5,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×7 (B2)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 36.5,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 36.9,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B2 “ĐÃ LƯU”",
+   "group": "callout6",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 36.9,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B2 “ĐÃ LƯU”",
+   "group": "callout6",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 37.3,
+   "kind": "chip",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "chip (underCard)",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 39.62,
+   "kind": "card_swap",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardSwap sau G1",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 40.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B3",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 40.06,
+   "kind": "chip",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "chip (underCard)",
+   "audible_s": 0.1281,
+   "shifted_from": 40.0
+  },
+  {
+   "t": 40.12,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2.5 (B3)",
+   "audible_s": 0.183,
+   "shifted_from": 40.0
+  },
+  {
+   "t": 42.2,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B3 “HỎI MÃ SỐ TRƯỚC”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 44.5,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×1.4 (B3)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 47.5,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 47.9,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B3 “Ô VUÔNG = CHỌN DÒNG”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 48.6,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B3 “NÚT TRÒN = NGÀNH CHÍNH”",
+   "group": "callout9",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 48.6,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B3 “NÚT TRÒN = NGÀNH CHÍNH”",
+   "group": "callout9",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 53.55,
+   "kind": "click",
+   "file": "click",
+   "gain_db": -22,
+   "src": "clickRipple “tích ô vuông”",
+   "audible_s": 0.0465
+  },
+  {
+   "t": 54.4,
+   "kind": "click",
+   "file": "click",
+   "gain_db": -22,
+   "src": "clickRipple “Cập nhật chính”",
+   "audible_s": 0.0465
+  },
+  {
+   "t": 56.7,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B3 “VẪN CHƯA CÓ NGÀNH CHÍNH”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 57.6,
+   "kind": "callout_warn",
+   "file": "blip_warn",
+   "gain_db": -22,
+   "src": "callout B3 “NHƯNG ĐÃ CÓ DẤU TÍCH”",
+   "audible_s": 0.146
+  },
+  {
+   "t": 60.0,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2 (B3)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 62.0,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 62.4,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B3 “CHỈ CÓ NHÓM A, B, C… · KHÔNG TÌM THEO TÊN”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 65.82,
+   "kind": "card_swap",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardSwap sau G2",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 66.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B4",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 66.06,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×3 (B4)",
+   "audible_s": 0.183,
+   "shifted_from": 66.0
+  },
+  {
+   "t": 71.0,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 71.3,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B4 “CÓ SẴN”",
+   "group": "callout13",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 71.3,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B4 “CÓ SẴN”",
+   "group": "callout13",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 71.4,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B4 “CHỈ GÕ TÊN RIÊNG”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 73.85,
+   "kind": "click",
+   "file": "click",
+   "gain_db": -22,
+   "src": "clickRipple “Kiểm tra trùng tên”",
+   "audible_s": 0.0465
+  },
+  {
+   "t": 75.0,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B4 “KHÔNG TRÙNG · ĐẶT ĐƯỢC”",
+   "group": "callout15",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 75.0,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B4 “KHÔNG TRÙNG · ĐẶT ĐƯỢC”",
+   "group": "callout15",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 77.72,
+   "kind": "card_swap",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardSwap sau G3",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 78.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B5",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 78.06,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2.4 (B5)",
+   "audible_s": 0.183,
+   "shifted_from": 78.0
+  },
+  {
+   "t": 81.3,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B5 “SAO CHÉP”",
+   "group": "callout16",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 81.3,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B5 “SAO CHÉP”",
+   "group": "callout16",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 81.8,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B5 “RỒI ĐỐI CHIẾU”",
+   "group": "callout17",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 81.8,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B5 “RỒI ĐỐI CHIẾU”",
+   "group": "callout17",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 86.0,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 86.4,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B5 “KHỚP RỒI ✓”",
+   "group": "callout18",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 86.4,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B5 “KHỚP RỒI ✓”",
+   "group": "callout18",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 89.2,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B5 “LẠI ĐỂ SẴN CẦN THƠ”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 92.0,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×3.5 (B5)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 99.5,
+   "kind": "card_swap",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardSwap sau G4",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 100.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B6",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 100.06,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×3.4 (B6)",
+   "audible_s": 0.183,
+   "shifted_from": 100.0
+  },
+  {
+   "t": 100.5,
+   "kind": "chip",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "chip (leftBottom)",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 104.0,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 104.4,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B6 “ĐỌC LẠI DÒNG BẰNG CHỮ”",
+   "group": "callout20",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 104.4,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B6 “ĐỌC LẠI DÒNG BẰNG CHỮ”",
+   "group": "callout20",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 107.0,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×1.8 (B6)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 109.7,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B6 “ĐANG CHỌN SẴN “ĐỊA CHỈ KHÁC””",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 112.0,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2 (B6)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 113.6,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B6 “CHỌN CÁI NÀY”",
+   "group": "callout22",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 113.6,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B6 “CHỌN CÁI NÀY”",
+   "group": "callout22",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 114.165,
+   "kind": "click",
+   "file": "click",
+   "gain_db": -22,
+   "src": "clickRipple “Giống địa chỉ trụ sở chính”",
+   "audible_s": 0.0465
+  },
+  {
+   "t": 114.5,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×4 (B6)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 118.5,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 118.8,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B6 “CHỈ CÒN KÊ KHAI”",
+   "group": "callout23",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 118.8,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B6 “CHỈ CÒN KÊ KHAI”",
+   "group": "callout23",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 119.0,
+   "kind": "chip",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "chip (leftBottom)",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 119.6,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B6 “NGÀY BẮT ĐẦU + SỐ LAO ĐỘNG”",
+   "group": "callout24",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 119.6,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B6 “NGÀY BẮT ĐẦU + SỐ LAO ĐỘNG”",
+   "group": "callout24",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 121.92,
+   "kind": "card_swap",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardSwap sau G5",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 122.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B7",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 122.06,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×4 (B7)",
+   "audible_s": 0.183,
+   "shifted_from": 122.0
+  },
+  {
+   "t": 124.0,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×4 (B7)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 126.0,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 126.3,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B7 “TỰ NỘP → CHỌN DÒNG NÀY”",
+   "group": "callout25",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 126.3,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B7 “TỰ NỘP → CHỌN DÒNG NÀY”",
+   "group": "callout25",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 127.6,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B7 “CHỈ KHI NHỜ NGƯỜI KHÁC NỘP”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 130.5,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×3.7 (B7)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 135.3,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B7 “KHỚP ✓”",
+   "group": "callout27",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 135.3,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B7 “KHỚP ✓”",
+   "group": "callout27",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 138.0,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2.7 (B7)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 139.6,
+   "kind": "riser",
+   "file": "riser",
+   "gain_db": -20,
+   "src": "riser 1.4s vào B8 (plan 4.2)",
+   "audible_s": 1.3967
+  },
+  {
+   "t": 140.0,
+   "kind": "wipe",
+   "file": "whoosh_wipe",
+   "gain_db": -18,
+   "src": "chapterWipe",
+   "audible_s": 0.7121
+  },
+  {
+   "t": 141.0,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn chương B8",
+   "audible_s": 0.0266
+  },
+  {
+   "t": 143.0,
+   "kind": "card_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardIn G7",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 143.06,
+   "kind": "text_in",
+   "file": "tick",
+   "gain_db": -30,
+   "src": "textIn H1 B8",
+   "audible_s": 0.0266,
+   "shifted_from": 143.0
+  },
+  {
+   "t": 143.3,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #1",
+   "pitch_semitones": 0,
+   "group": "b8checks",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 143.42,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #2",
+   "pitch_semitones": 2,
+   "group": "b8checks",
+   "audible_s": 0.2745
+  },
+  {
+   "t": 143.54,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #3",
+   "pitch_semitones": 4,
+   "group": "b8checks",
+   "audible_s": 0.2446
+  },
+  {
+   "t": 143.66,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #4",
+   "pitch_semitones": 5,
+   "group": "b8checks",
+   "audible_s": 0.2308
+  },
+  {
+   "t": 143.78,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #5",
+   "pitch_semitones": 7,
+   "group": "b8checks",
+   "audible_s": 0.2057
+  },
+  {
+   "t": 143.9,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #6",
+   "pitch_semitones": 9,
+   "group": "b8checks",
+   "audible_s": 0.1832
+  },
+  {
+   "t": 144.02,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #7",
+   "pitch_semitones": 11,
+   "group": "b8checks",
+   "audible_s": 0.1632
+  },
+  {
+   "t": 144.14,
+   "kind": "check_b8",
+   "file": "tick_ok",
+   "gain_db": -30,
+   "src": "dấu tích B8 #8",
+   "pitch_semitones": 12,
+   "group": "b8checks",
+   "audible_s": 0.1541
+  },
+  {
+   "t": 145.4,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B8 “BẤM CHUẨN BỊ”",
+   "group": "callout29",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 145.4,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B8 “BẤM CHUẨN BỊ”",
+   "group": "callout29",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 147.7,
+   "kind": "click",
+   "file": "click",
+   "gain_db": -22,
+   "src": "clickRipple “Chuẩn bị”",
+   "audible_s": 0.0465
+  },
+  {
+   "t": 147.767,
+   "kind": "error_buzz",
+   "file": "error_buzz",
+   "gain_db": -18,
+   "src": "dòng báo lỗi B8 (khung gốc 322.067)",
+   "audible_s": 0.2758
+  },
+  {
+   "t": 148.7,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 149.0,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B8 “PHẢI CHỌN NGÀNH CHÍNH · LỖI TỪ BƯỚC 3”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 153.2,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×2 (B8)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 155.8,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B8 “NÚT TRÒN ✓”",
+   "group": "callout31",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 155.8,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B8 “NÚT TRÒN ✓”",
+   "group": "callout31",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 157.9,
+   "kind": "tua",
+   "file": "tua",
+   "gain_db": -28,
+   "src": "đầu đoạn tua ×1.7 (B8)",
+   "audible_s": 0.183
+  },
+  {
+   "t": 160.0,
+   "kind": "callout_ok_pop",
+   "file": "pop",
+   "gain_db": -26,
+   "src": "callout B8 “TRANG XÁC NHẬN · HẾT LỖI”",
+   "group": "callout32",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 160.0,
+   "kind": "callout_ok_tick",
+   "file": "tick_ok",
+   "gain_db": -22,
+   "src": "callout B8 “TRANG XÁC NHẬN · HẾT LỖI”",
+   "group": "callout32",
+   "audible_s": 0.3081
+  },
+  {
+   "t": 161.0,
+   "kind": "callout_danger",
+   "file": "blip_danger",
+   "gain_db": -20,
+   "src": "callout B8 “BẤM LÀ NỘP THẬT · NHÓM DỪNG Ở ĐÂY”",
+   "audible_s": 0.2031
+  },
+  {
+   "t": 164.0,
+   "kind": "card_out",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "cardOut G7 (thu nhỏ trước FlowDiagram)",
+   "audible_s": 0.2964
+  },
+  {
+   "t": 164.3,
+   "kind": "flow_node",
+   "file": "pop_node",
+   "gain_db": -24,
+   "src": "FlowDiagram nút 1",
+   "group": "flow",
+   "audible_s": 0.1292
+  },
+  {
+   "t": 164.35,
+   "kind": "flow_line",
+   "file": "draw_line",
+   "gain_db": -30,
+   "src": "FlowDiagram đường 1",
+   "group": "flow",
+   "audible_s": 0.3821
+  },
+  {
+   "t": 164.7,
+   "kind": "flow_node",
+   "file": "pop_node",
+   "gain_db": -24,
+   "src": "FlowDiagram nút 2",
+   "group": "flow",
+   "audible_s": 0.1292
+  },
+  {
+   "t": 164.75,
+   "kind": "flow_line",
+   "file": "draw_line",
+   "gain_db": -30,
+   "src": "FlowDiagram đường 2",
+   "group": "flow",
+   "audible_s": 0.3821
+  },
+  {
+   "t": 165.1,
+   "kind": "flow_node",
+   "file": "pop_node",
+   "gain_db": -24,
+   "src": "FlowDiagram nút 3",
+   "group": "flow",
+   "audible_s": 0.1292
+  },
+  {
+   "t": 165.15,
+   "kind": "flow_line",
+   "file": "draw_line",
+   "gain_db": -30,
+   "src": "FlowDiagram đường 3",
+   "group": "flow",
+   "audible_s": 0.3821
+  },
+  {
+   "t": 165.2,
+   "kind": "chip",
+   "file": "pop",
+   "gain_db": -24,
+   "src": "chip (flowNode3)",
+   "audible_s": 0.1281
+  },
+  {
+   "t": 165.5,
+   "kind": "flow_node",
+   "file": "pop_node",
+   "gain_db": -24,
+   "src": "FlowDiagram nút 4",
+   "group": "flow",
+   "audible_s": 0.1292
+  },
+  {
+   "t": 167.0,
+   "kind": "ding_end",
+   "file": "ding_end",
+   "gain_db": -18,
+   "src": "thẻ chốt R (plan 4.2 2:47.0)",
+   "audible_s": 1.984
+  }
+ ],
+ "dropped": [
+  {
+   "t": 143.0,
+   "kind": "punch_in",
+   "file": "whoosh",
+   "gain_db": -22,
+   "src": "punchIn (plan 4.3 whoosh_soft)",
+   "audible_s": 0.2964,
+   "drop_reason": "trùng < 40ms hoặc đã đủ 2 SFX đang vang, lùi tới 150ms vẫn không có chỗ"
+  }
+ ]
+}

@@ -6,3 +6,5 @@ work/
 qa/
 __pycache__/
 public/hai_clean.mp4
+audio/*.wav
+audio/sfx/*.wav

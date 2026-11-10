@@ -1,18 +1,18 @@
 // <FlowDiagram/>: sơ đồ ngang 4 nút bo tròn ở cuối B8 (plan 8, 2:44.0–2:47.0).
 // Đường nối vẽ dần trong 1.2s, mỗi nút pop khi đường chạm tới; chip accent dưới nút 3.
 import React from "react";
-import { CHIPS, FLOW } from "../data";
+import { CHIPS, FLOW, FLOW_TIMING } from "../data";
 import { C, FONT } from "../tokens";
 import { prog, springAt, useT } from "./anim";
 import { Chip } from "./Chip";
 
 const NODE_W = 330, NODE_H = 150, Y = 470, GAP = (1728 - 4 * NODE_W) / 3;
-const DRAW_START = FLOW.t_in + 0.3;
+const DRAW_START = FLOW_TIMING.drawStart;
 
 export const FlowDiagram: React.FC = () => {
   const t = useT();
   if (t < FLOW.t_in || t > FLOW.t_out) return null;
-  const seg = FLOW.drawDur / (FLOW.nodes.length - 1);
+  const seg = FLOW_TIMING.seg;
   const xs = FLOW.nodes.map((_, i) => 96 + i * (NODE_W + GAP));
   const chip = CHIPS.find((c) => c.where === "flowNode3");
   const o = 1 - prog(t, FLOW.t_out - 0.25, 0.25);

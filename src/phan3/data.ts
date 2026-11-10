@@ -45,6 +45,9 @@ export const HEADLINES: Record<string, HeadlineText> = {
 // (cùng nhịp cắt nhạc + error_buzz). Plan 8 viết chưa rõ; nhóm chốt 10/11, chữ giữ nguyên.
 // Plan ghi 2:27.7; đo khung gốc: dòng đỏ hiện ở gốc 322.067 = ra 2:27.767 (chậm 2 khung) → dùng mốc đo.
 export const B8_ANSWER_REDO = 147.767;
+// Khung gốc đầu tiên có dòng báo lỗi đỏ (đo: vùng [652,240,1545,270] đổi màu ở khung 9662).
+// Âm thanh: cắt nhạc 0.5s + error_buzz đặt theo mốc ra của khung này (= B8_ANSWER_REDO).
+export const ERROR_LINE_SRC = 322.067;
 
 // ---- Thẻ chương (MG giữa màn)
 export type ChapterLine = { text: string; hl?: string };
@@ -99,6 +102,8 @@ export const FLOW = {
   t_in: 164.0, t_out: 167.0, drawDur: 1.2,
   nodes: ["Người nộp", "Hệ thống đăng ký hộ kinh doanh", "Cơ quan đăng ký kinh doanh cấp xã", "Cơ quan thuế"],
 };
+// Nhịp vẽ sơ đồ: nút 1 pop ở drawStart, mỗi đường nối vẽ trong `seg` giây, nút kế pop khi đường chạm tới.
+export const FLOW_TIMING = { drawStart: FLOW.t_in + 0.3, seg: FLOW.drawDur / (FLOW.nodes.length - 1) };
 
 // Nhãn speedTag do plan ghi rõ (mục 7–8), khóa theo src_in của đoạn play.
 // Đoạn tua > 1.2× không có trong bảng này thì làm tròn 1 chữ số thập phân.

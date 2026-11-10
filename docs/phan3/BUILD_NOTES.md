@@ -134,3 +134,51 @@ Mốc gốc lấy ở khung cuối con trỏ còn trên nút, trước khi giao 
 - Không có cờ họ tên, SĐT, số định danh, email, số nhà, ngày sinh.
 - `at` (559 khung): cờ sai, đã xem theo cụm vị trí: dãy chấm tiến độ, nút "?", mũi tên dropdown, nút radio, số ① trong nhãn, ô vốn.
 - Hai dòng blocklist tỉnh/phường: trường trụ sở và địa chỉ thuế (nhóm đã quyết giữ theo plan 6.3) và danh sách thả xuống chọn tỉnh đang mở ở 1:32.4–1:32.7, 2:11.0–2:11.2 (danh sách chung, dòng đang chọn nằm trong vùng mosaic; plan 6.3 chấp nhận).
+
+## Chặng 4A · Âm thanh tự tổng hợp (chưa có giọng)
+
+```
+npx esbuild scripts/phan3/export_timeline.ts --bundle --platform=node --format=esm \
+  --outfile=work/export_timeline.mjs --alias:remotion=./scripts/phan3/remotion-stub.ts && node work/export_timeline.mjs
+python3 -I scripts/phan3/make_sfx.py      # audio/sfx/*.wav
+python3 -I scripts/phan3/make_events.py   # audio/sfx_events.json
+python3 -I scripts/phan3/make_music.py    # audio/music_bed.wav
+python3 -I scripts/phan3/mix_audio.py     # audio/stem_*.wav, stem_ducking_map.json, mix_no_vo.wav, out/phan3_v2_animatic_audio.mp4
+python3 -I scripts/phan3/audio_qa.py      # qa/audio_report.txt, qa/audio_timeline.png
+```
+
+- Không tải nhạc/SFX, không mẫu: mọi âm tổng hợp bằng numpy (bộ lọc FFT tự viết; không cài scipy/matplotlib). WAV 48 kHz 24-bit, mỗi SFX fade vào/ra 5 ms. File WAV không commit (tái tạo bằng script).
+- Mọi mốc âm thanh lấy từ `work/timeline_cues.json`, do `export_timeline.ts` tính bằng CHÍNH code dựng video (edl.json + cues.json), không gõ tay.
+- **Mức tham chiếu:** 0 dB = mức giọng đọc (bed nhạc chuẩn hóa -14 LUFS = 0 dB). Các mức dB của plan 4.2–4.3 hiểu là so với mức này. Mix tạm (không giọng) nhân một hệ số chung (+18.1 dB) để tổng -16 LUFS.
+
+### Nhạc nền (`make_music.py`)
+- 96 BPM (ô nhịp 2.5 s, 68 ô = 170 s), Đô trưởng. Pad (3 giọng lệch ±6 cent, 4 bội âm), bass sine mềm (phách 1, 3 và nốt dẫn), pluck kiểu dây gảy (bội âm tắt nhanh dần) ở ô lẻ, hi-hat nhiễu lọc > 7 kHz ở phách lẻ. Mức trong bed: pad -12, bass -9, pluck -15, hi-hat -27 dB.
+- Cấu trúc theo mốc: intro pad + vài nốt pluck (fade vào 1 s) → B1–B7 vòng C–G–Am–F → 2:19.5 hi-hat 16 tăng dần → B8 "nhạc giảm" Am–F–Dm–E, -3 dB, bass nhịp 8 → **cắt 0.5 s ở 2:27.767** (tắt/mở 10 ms) → vào lại -20 dB, low-pass 1.5 kHz (12 dB/oct) → **2:35.7 mở low-pass trong 0.3 s**, F–G–C–C đầy đủ → 2:47.0 hợp âm Đô trưởng vào mềm (attack 0.25 s; "hit" do ding_end đảm nhận) → fade 1 s cuối.
+- Master bed: limiter đỉnh -4.5 dBFS ở -14 LUFS (giảm tối đa 2.1 dB) để khi nâng cả mix lên -16 LUFS vẫn dưới -1 dBTP.
+
+### SFX (`make_sfx.py`, `make_events.py`)
+| File | Âm sắc | Dùng cho | Mức |
+|---|---|---|---|
+| whoosh | nhiễu quét 500→2600 Hz, 0.32 s | cardIn, cardSwap, cardOut, punchIn (plan 4.3) | -22 dB |
+| whoosh_wipe | nhiễu quét 260→4200 Hz + trầm, 0.72 s | 2 chapterWipe | -18 dB |
+| tick | gõ gỗ 2.4 kHz, 60 ms | textIn khối chữ (8 H1 + chương S00, B8), một lần mỗi khối | -30 dB |
+| pop + tick_ok | pop trượt 900→300 Hz / ting G6 | callout ok (cặp cố ý, cùng mốc) | -26 / -22 dB (plan -24 / -20: mỗi âm -2 dB vì hai âm cộng đỉnh) |
+| blip_danger | quãng 2 thứ G3/G#3 trượt nhẹ xuống, lọc < 1.4 kHz | callout danger | -20 dB |
+| blip_warn | quãng 5 E5/B5 | callout warn | -22 dB |
+| click | nhấn + nhả (38 ms) | 6 clickRipple | -22 dB |
+| tick_ok (cao dần) | ting C→C quãng tám, cách 120 ms | 8 dấu tích B8 | -30 dB |
+| pop | | 8 badge B2 (từ cái 2: -3 dB), 5 chip | -24 dB |
+| tua | "rẹt" quét lên + 3 nhịp lách tách | đầu 20 đoạn tua > 1.2× | -28 dB |
+| pop_node / draw_line | pop tròn cao / nhiễu 1.8–5.5 kHz rung nhẹ | FlowDiagram: 4 nút, 3 đường | -24 / -30 dB |
+| riser | nhiễu quét + âm trượt A3→A5, rung nhanh dần, 1.4 s | 2:19.6 → B8 | -20 dB |
+| error_buzz | 2 răng cưa 110/116.5 Hz, lọc < 1.5 kHz, rung 30 Hz | 2:27.767 | -18 dB |
+| ding_end | chuông C6 (bội 1, 2.756, 5.404) + C5, tắt 2.2 s | 2:47.0 | -18 dB |
+
+- Không SFX cho jumpCut (nhóm chốt), FreezeCue (quá dày), pill (gộp với tick khối chữ), callout trùng một chuỗi đã thiết kế ("ĐỦ 8 DẤU TÍCH" ← 8 tick; "8 PHẦN" ← 8 badge). Không dùng type_soft (không có trong danh sách của nhóm).
+- Gỡ va chạm: chuỗi (cặp pop+tick_ok, 8 tick, 8 badge, sơ đồ) tính là một âm; lệch < 40 ms hoặc đã đủ 2 âm đang vang thì âm ưu tiên thấp lùi 60 ms, tối đa 150 ms, không được thì bỏ. Kết quả: 139 giữ, 1 bỏ (whoosh punchIn 2:23.0 trùng whoosh cardIn), 7 lùi (chip/tua nhường tick khối chữ ở đầu bước).
+- Plan 4.3 "SFX trùng chữ quan trọng trong lời đọc thì lùi 100–200 ms": chưa áp dụng (chưa có giọng) → chặng 4B.
+
+### Mix, ducking (`mix_audio.py`)
+- Nhạc -16 dB khi không lời; dưới lời -24 dB (đoạn sau báo lỗi nền -20 dB, dưới lời vẫn -24 dB). Attack 80 ms (hạ sớm 80 ms để đủ sâu đúng lúc câu bắt đầu), release 400 ms, gộp câu cách < 0.48 s. 32 câu → 22 khoảng hạ, nhạc bị hạ 135.5 s / 170 s. `audio/stem_ducking_map.json` ghi khoảng, tham số và đường mức 100 Hz; chặng 4B thay mốc câu bằng mốc đo từ file giọng rồi chạy lại `mix_audio.py`.
+- Vì chưa có giọng nên cả mix nâng +18.1 dB; để TP ≤ -1 dBTP, đỉnh chỉ được nén trên stem SFX (nhạc không bị bơm theo SFX): lookahead/giữ 6 ms, nhả 80 ms, trần đỉnh mẫu -1.8 dBFS. Bị nén > 3 dB: 10/139 sự kiện; nhiều nhất ding_end 10.2 dB (chỉ phần attack).
+- Kết quả (`qa/audio_report.txt`): mix -16.02 LUFS / -1.67 dBTP; track AAC 320 kbps trong mp4 -16.03 LUFS / -1.61 dBTP. Khoảng 2:27.767–2:28.267 nhạc im hẳn. riser 0 ms, error_buzz 0 ms, ding_end +1 ms so với mốc đặt.
