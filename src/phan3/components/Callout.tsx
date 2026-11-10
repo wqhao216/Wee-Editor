@@ -139,13 +139,13 @@ export const CalloutLayer: React.FC<{ view: View; t: number; scenes: string[] }>
 );
 
 /** pulse: box sáng nhấp nháy 2 lần (2 × 300ms), dùng khi video đang chạy. */
-export const Pulse: React.FC<{ box: Rect; view: View; t: number; t0: number; variant: keyof typeof VARIANT_COLOR }> = ({ box, view, t, t0, variant }) => {
+export const Pulse: React.FC<{ box: Rect; view: View; t: number; t0: number; color: string }> = ({ box, view, t, t0, color }) => {
   if (t < t0 || t > t0 + 2 * DUR.pulse) return null;
   const r = padded(srcRectToScreen(view, box));
   const k = ((t - t0) % DUR.pulse) / DUR.pulse;
   const a = Math.sin(Math.PI * k);
   return (
-    <div style={{ position: "absolute", left: r.x1, top: r.y1, width: r.x2 - r.x1, height: r.y2 - r.y1, borderRadius: 10, border: `${STROKE}px solid ${VARIANT_COLOR[variant]}`, boxSizing: "border-box", opacity: a, boxShadow: `0 0 24px ${VARIANT_COLOR[variant]}` }} />
+    <div data-qa="pulse" style={{ position: "absolute", left: r.x1, top: r.y1, width: r.x2 - r.x1, height: r.y2 - r.y1, borderRadius: 10, border: `${STROKE}px solid ${color}`, boxSizing: "border-box", opacity: a, boxShadow: `0 0 24px ${color}` }} />
   );
 };
 
@@ -156,6 +156,6 @@ export const ClickRipple: React.FC<{ x: number; y: number; view: View; t: number
   const s = srcRectToScreen(view, { x1: x, y1: y, x2: x, y2: y });
   const r = 34 * p;
   return (
-    <div style={{ position: "absolute", left: s.x1 - r, top: s.y1 - r, width: 2 * r, height: 2 * r, borderRadius: "50%", border: `4px solid ${C.accent}`, boxSizing: "border-box", opacity: 0.6 * (1 - p) }} />
+    <div data-qa="ripple" style={{ position: "absolute", left: s.x1 - r, top: s.y1 - r, width: 2 * r, height: 2 * r, borderRadius: "50%", border: `4px solid ${C.accent}`, boxSizing: "border-box", opacity: 0.6 * (1 - p) }} />
   );
 };

@@ -42,8 +42,9 @@ export const HEADLINES: Record<string, HeadlineText> = {
 };
 
 // B8: cụm "xong." của dòng trả lời textOut 150ms rồi textIn lại đúng lúc dòng báo lỗi hiện ra
-// (2:27.7, cùng nhịp cắt nhạc + error_buzz). Plan 8 viết chưa rõ; nhóm chốt 10/11, chữ giữ nguyên.
-export const B8_ANSWER_REDO = 147.7;
+// (cùng nhịp cắt nhạc + error_buzz). Plan 8 viết chưa rõ; nhóm chốt 10/11, chữ giữ nguyên.
+// Plan ghi 2:27.7; đo khung gốc: dòng đỏ hiện ở gốc 322.067 = ra 2:27.767 (chậm 2 khung) → dùng mốc đo.
+export const B8_ANSWER_REDO = 147.767;
 
 // ---- Thẻ chương (MG giữa màn)
 export type ChapterLine = { text: string; hl?: string };
@@ -65,6 +66,33 @@ export const CHIPS: ChipCue[] = [
 
 // Thẻ chữ lớn ở B8 (plan 8: 2:30.4–2:33.2). Phần nằm trong {} tô màu accent.
 export const BIG_CARD = { t_in: 150.4, t_out: 153.2, text: "{8} dấu tích · vẫn {1} lỗi" };
+
+// ---- Cú bấm (clickRipple): giây gốc + tọa độ gốc, ĐÃ KIỂM bằng khung hình (con trỏ trên nút,
+// rồi giao diện đổi). Mốc ra tự tính theo EDL. Plan 2.6: không đặt ripple nếu không chắc vị trí.
+export type ClickCue = { src: number; x: number; y: number; what: string };
+export const CLICKS: ClickCue[] = [
+  { src: 23.0, x: 1519, y: 358, what: "Bắt đầu" }, // plan: gốc 23.2
+  { src: 118.45, x: 697, y: 675, what: "tích ô vuông" }, // plan: gốc 117.6 (lúc đó trang còn cuộn)
+  { src: 119.3, x: 769, y: 775, what: "Cập nhật chính" }, // plan: gốc 120.5 (là lúc trang tải lại xong)
+  { src: 176.95, x: 1477, y: 486, what: "Kiểm tra trùng tên" },
+  { src: 262.33, x: 676, y: 468, what: "Giống địa chỉ trụ sở chính" },
+  { src: 322.0, x: 916, y: 438, what: "Chuẩn bị" },
+];
+
+// ---- pulse (plan 8). Mốc theo thời gian ra. color: màu viền.
+export type PulseCue = { t: number; box: [number, number, number, number]; color: string; scene: string };
+const CHECK_Y = [244, 272, 300, 328, 356, 384, 411, 439]; // 8 dấu tích cột Khối dữ liệu (đo ở gốc 320.8)
+export const PULSES: PulseCue[] = [
+  { t: 10.1, box: [412, 296, 705, 322], color: "#E5484D", scene: "B1" },
+  { t: 73.6, box: [1398, 470, 1550, 501], color: "#FFE14D", scene: "B4" },
+  ...CHECK_Y.map((y, i) => ({ t: 143.3 + i * 0.12, box: [396, y - 12, 417, y + 12] as [number, number, number, number], color: "#16A34A", scene: "B8" })),
+];
+
+// ---- badgeCount ①…⑧ cạnh 8 dòng cột Khối dữ liệu (plan 8 B2, tâm theo tọa độ gốc ở 24.4)
+export const BADGES = { t_in: 19.3, t_out: 22.4, x: 378, ys: [245, 273, 301, 329, 357, 384, 412, 440], scene: "B2" };
+
+// ---- Bộ đếm lớn góc trên phải ở B8 (plan 8: 2:23.3–2:25.4, màu ok)
+export const COUNTER = { t_in: 143.3, t_out: 145.4, text: "8/8 ✓" };
 
 // FlowDiagram cuối B8 (plan 8: 2:44.0–2:47.0)
 export const FLOW = {
@@ -109,7 +137,7 @@ export const allOnScreenStrings = (): string[] => {
   for (const c of CALLOUTS) out.push(c.label);
   for (const c of CHIPS) out.push(c.text);
   for (const v of VO) out.push(v.text);
-  out.push(BIG_CARD.text.replace(/[{}]/g, ""), ...FLOW.nodes, ...Object.values(SPEED_LABELS));
+  out.push(BIG_CARD.text.replace(/[{}]/g, ""), ...FLOW.nodes, ...Object.values(SPEED_LABELS), COUNTER.text);
   for (let i = 1; i <= 8; i++) out.push(`BƯỚC ${i}/8`);
   return out;
 };

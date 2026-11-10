@@ -4,7 +4,8 @@ import { AbsoluteFill } from "remotion";
 import { C } from "../tokens";
 import { useT } from "./anim";
 
-const Blob: React.FC<{ cx: number; cy: number; color: string; opacity: number; phase: number; t: number }> = ({ cx, cy, color, opacity, phase, t }) => {
+const Blob: React.FC<{ cx: number; cy: number; color: string; opacity: number; phase: number; t: number }> = ({ cx, cy, color, opacity: baseOpacity, phase, t }) => {
+  const opacity = baseOpacity * Math.min(1, Math.max(0, t / 0.3)); // S00 0:00.0: blob fade in 300ms
   const a = (2 * Math.PI * t) / 12 + phase;
   const x = cx + 40 * Math.sin(a);
   const y = cy + 40 * Math.sin(a + Math.PI / 2);

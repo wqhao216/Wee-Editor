@@ -12,6 +12,7 @@ import { BigCard, ChipLayer } from "./components/Chip";
 import { FlowDiagram } from "./components/FlowDiagram";
 import { Headline } from "./components/Headline";
 import { QaProbe } from "./components/QaProbe";
+import { Counter } from "./components/Overlays";
 import { ScreenCard } from "./components/ScreenCard";
 import { StepPill } from "./components/StepPill";
 import { Subtitles } from "./components/Subtitles";
@@ -79,6 +80,8 @@ const ChapterLayer: React.FC = () => {
   return null;
 };
 
+const CounterLayer: React.FC = () => <Counter t={useT()} />;
+
 const Wipes: React.FC = () => {
   const t = useT();
   return <>{WIPES.map((w, i) => <ChapterWipe key={i} t={t} t_in={w.t_in} t_out={w.t_out} />)}</>;
@@ -95,6 +98,7 @@ export const Phan3: React.FC = () => {
         <ChipLayer />
         <BigCard />
         <PillLayer />
+        <CounterLayer />
         <FlowDiagram />
         <ChapterLayer />
         <Wipes />

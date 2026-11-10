@@ -251,3 +251,16 @@ export const subtitlePages = (): SubtitlePage[] => {
   }
   return out;
 };
+
+// ------------------------------------------------------------------ Gốc → ra
+
+/** Giây ra mà khung gốc `src` được phát (đoạn play chứa nó). null nếu khung đó không được phát. */
+export const srcToOut = (src: number): { t: number; scene: string } | null => {
+  for (const s of EDL) {
+    for (const g of s.segments) {
+      if (g.type !== "play" || src < g.src_in - EPS || src >= g.src_out - EPS) continue;
+      return { t: g.out_in + ((src - g.src_in) / (g.src_out - g.src_in)) * (g.out_out - g.out_in), scene: s.id };
+    }
+  }
+  return null;
+};

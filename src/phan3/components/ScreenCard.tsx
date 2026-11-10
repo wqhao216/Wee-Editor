@@ -9,6 +9,7 @@ import { cardInstances, lerp, segmentAt, speedLabel, viewAt, type CardInstance, 
 import { springAt, useT } from "./anim";
 import { CalloutLayer } from "./Callout";
 import { FreezeCue, JumpCut, SpeedTag } from "./CardFx";
+import { VideoOverlays } from "./Overlays";
 
 export const VIDEO_SRC = "hai_clean.mp4";
 
@@ -82,6 +83,7 @@ export const ScreenCard: React.FC = () => {
               <FreezeCue container={v.container} radius={radius} t={t} t_in={seg.out_in} t_out={seg.out_out} showChip={!contFreeze} />
             ) : null}
             {label && seg.type === "play" ? <SpeedTag label={label} container={v.container} t={t} t_in={seg.out_in} t_out={seg.out_out} /> : null}
+            {inst.main ? <VideoOverlays view={v} t={t} scenes={group.scenes} /> : null}
             {inst.main ? <CalloutLayer view={v} t={t} scenes={group.scenes} /> : null}
           </CardFrame>
         );
