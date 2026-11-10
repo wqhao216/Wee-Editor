@@ -62,8 +62,32 @@ Tóm lại: mốc đổi dy của plan sớm hoặc muộn 1–7 khung, và plan
 - `qa/privacy_sheet.png`: 345 khung, mỗi 0.5 s ở các đoạn 40–100, 200–240, 250–321, cắt vùng trang x 370–1610. Khung có cờ OCR có nhãn đỏ. `qa/privacy_detail/*.png`: cùng các khung, cắt x 600–1620 ở tỉ lệ 0.6 để soi.
 - OCR: `tesseract -l vie+eng --psm 11`, ảnh xám phóng 2×, gọi qua stdin/stdout (không ghi ảnh tạm), `OMP_THREAD_LIMIT=1`.
 - Tự kiểm bộ dò trên khung **gốc** đã biết lộ (`--selftest-raw`): bắt được họ tên, SĐT, email, `@`. **Không** bắt được số định danh 12 số ở 212.5 (OCR không đọc ra đủ 12 số liền). Vì vậy cờ `12-so` chỉ là lớp kiểm phụ, vẫn phải xem bằng mắt.
-- **Quét thêm từng khung** (`scan_all_frames.py`, 5130 khung của 3 đoạn QA): không khung nào có cờ họ tên, SĐT, số định danh, email, số nhà/đường, `sdt-mau` hay `ngay-sinh`. Các cờ còn lại chỉ thuộc 3 loại: `at`, `12-so` (ô vốn) và hai dòng blocklist ứng với trường tỉnh/phường mà mục 6.3 để lộ. Hai dòng blocklist này **chờ nhóm quyết định**, xem báo cáo chặng 1, không ghi chi tiết ở đây.
+- **Quét thêm từng khung** (`scan_all_frames.py`, 5130 khung của 3 đoạn QA): không khung nào có cờ họ tên, SĐT, số định danh, email, số nhà/đường, `sdt-mau` hay `ngay-sinh`. Các cờ còn lại chỉ thuộc 3 loại: `at`, `12-so` (ô vốn) và hai dòng blocklist ứng với trường tỉnh/phường mà mục 6.3 để lộ. Nhóm quyết định **giữ theo plan 6.3** (không che thêm trường tỉnh/phường).
 - Cờ sai đã xác nhận bằng mắt:
   - `at`: email liên hệ công khai của Cục ở footer trang (y ≈ 1044–1063) và icon (nút "?" ở x ≈ 1282–1319, nút radio ở x ≈ 649–717, nút "về đầu trang" ở x ≈ 1842–1956) bị OCR đọc thành `@`.
     Ngoài ra còn nút radio ở cột trái (Cá nhân / Giống địa chỉ trụ sở…), icon lịch cạnh ô ngày, và chính các ô mosaic bị OCR đọc thành `@`.
   - `12-so` ở 251.1–251.6: ô vốn mẫu, OCR đọc dấu phẩy thập phân thành dấu chấm.
+
+## Chặng 2 · Hệ thống thiết kế (Remotion)
+
+```
+node scripts/phan3/render_stills.mjs qa/style 1.0 13.8 49.5 87.5 150.0 168.0   # style frame + log QA
+python3 -I scripts/phan3/check_stage2.py                                         # tự kiểm -> qa/style/check_report.txt
+```
+
+- Mã nguồn: `src/phan3/` (tokens, data, timeline, fonts, components/*). Composition `Phan3` 1920×1080, 30 fps, 5100 khung.
+- Font: Be Vietnam Pro 500/600/700/800 từ `@fontsource/be-vietnam-pro` (OFL, chạy offline), nạp đủ 3 tập con (latin, latin-ext, vietnamese) trước khi chụp khung.
+- Font **không có** glyph "→" (U+2192) và "✓" (U+2713): vẽ bằng SVG theo màu chữ; chuỗi gốc giữ nguyên. "⏸" của freezeCue vẽ bằng CSS.
+- Trình duyệt render: Remotion không tải được trình duyệt của nó (mạng chặn host remotion.media) nên dùng chrome-headless-shell có sẵn trên máy (`REMOTION_BROWSER` để đổi).
+- `public/hai_clean.mp4` là hard link tới `work/hai_clean.mp4` (không commit; script render tự tạo lại).
+- Khung gốc lấy bằng `OffthreadVideo trimBefore=<khung gốc>` trong `Freeze frame=0`. Không dùng `Freeze frame=<khung gốc>`: khung > 5100 bị Remotion kẹp về cuối composition, hiện sai trang.
+- Đã kiểm bằng script: tổng 170.0 s; 4629 khung video ra, **0 khung lấy từ đoạn cấm** (kể cả lúc card trượt ra/vào); camera zoom ≤ 2.6× và vùng nhìn nằm trong `[370,150,1610,1000]`; phụ đề 35 trang, mỗi trang ≤ 2 dòng ≤ 42 ký tự, ghép lại đúng nguyên câu.
+
+### Quyết định thiết kế (plan không nói rõ)
+1. Nhãn khung khoanh mặc định đặt **trên** box (cách 12px); nếu đè box/nhãn khác, pill hoặc vùng phụ đề thì lần lượt thử dưới-trái, trên-phải, dưới-phải. Phía đặt chọn một lần cho mỗi khung (không nhảy khi camera chạy).
+2. Khi punchIn, dãy 8 chấm tiến độ có nền trắng mờ phía sau (nếu không sẽ chìm vào ảnh trang web).
+3. Chip "trái dưới"/"dưới card" giữ chỗ plan ghi; riêng lúc card phủ toàn khung mà chip đè khung khoanh đang hiện thì dời sang chỗ trống kế tiếp (đã xảy ra ở 1:59–2:01.8: chip thuế khoán che khung "CHỈ CÒN KÊ KHAI").
+4. Thẻ chốt R nền vàng: vạch highlight dùng màu trắng (vạch vàng trên nền vàng không thấy).
+5. jumpCut áp cho mọi chỗ nối hai đoạn gốc không liền nhau (lệch > 0.35 s) trong cùng bước: 15 chỗ, gồm 4 ví dụ của plan.
+6. speedTag: dùng đúng nhãn plan ghi; đoạn tua > 1.2× mà plan không ghi nhãn thì làm tròn 1 chữ số (×1.3, ×2.5, ×2, ×3.4, ×1.8, ×2.7, ×1.7).
+7. cardSwap bắt đầu ngay sau punchOut (không sớm hơn 0.5 s trước bước mới): cũ ra 350 ms, mới vào 600 ms, chồng 150 ms; card mới dừng ở khung đầu của bước mới cho tới lúc bước bắt đầu.
