@@ -58,11 +58,14 @@ type WordsProps = {
   indexOffset?: number; // chỉ số chữ đầu (để nối nhịp giữa các dòng)
   hlColor?: string;
   hlStart?: number; // giây bắt đầu vạch highlight
+  hlRedoAt?: number; // cụm highlight textOut 150ms rồi textIn lại đúng mốc này (B8 2:27.7)
 };
+
+export const HL_REDO_OUT = 0.15;
 
 export const wordCount = (text: string) => text.split(" ").length;
 
-export const AnimatedWords: React.FC<WordsProps> = ({ text, start, t, hl, indexOffset = 0, hlColor = C.accent, hlStart }) => {
+export const AnimatedWords: React.FC<WordsProps> = ({ text, start, t, hl, indexOffset = 0, hlColor = C.accent, hlStart, hlRedoAt }) => {
   const words = text.split(" ");
   let hlFrom = -1, hlTo = -1;
   if (hl) {
@@ -76,8 +79,14 @@ export const AnimatedWords: React.FC<WordsProps> = ({ text, start, t, hl, indexO
       });
     }
   }
+  // Chạy lại cụm highlight: [redo − 150ms, redo) mờ ra; từ redo, các chữ của cụm textIn lại từ đầu.
+  const redo = hlRedoAt !== undefined && hlFrom >= 0 && t >= hlRedoAt - HL_REDO_OUT;
+  const redoOut = redo && t < hlRedoAt! ? prog(t, hlRedoAt! - HL_REDO_OUT, HL_REDO_OUT, EASE.inCubic) : 0;
   const wordEl = (w: string, i: number) => {
-    const p = prog(t, start + (indexOffset + i) * DUR.textInStagger, DUR.textInWord, EASE.outCubic);
+    const inHl = i >= hlFrom && i <= hlTo;
+    const p = redo && inHl
+      ? (t < hlRedoAt! ? 1 - redoOut : prog(t, hlRedoAt! + (i - hlFrom) * DUR.textInStagger, DUR.textInWord, EASE.outCubic))
+      : prog(t, start + (indexOffset + i) * DUR.textInStagger, DUR.textInWord, EASE.outCubic);
     return (
       <span key={i} style={{ display: "inline-block", position: "relative", zIndex: 1, opacity: p, filter: `blur(${12 * (1 - p)}px)`, translate: `0 ${18 * (1 - p)}px` }}>
         <RichText text={w} />
@@ -88,7 +97,12 @@ export const AnimatedWords: React.FC<WordsProps> = ({ text, start, t, hl, indexO
   for (let i = 0; i < words.length; i++) {
     if (i === hlFrom) {
       const s = hlStart ?? start + (indexOffset + hlTo) * DUR.textInStagger + DUR.textInWord + DUR.highlightDelay;
-      const bar = prog(t, s, DUR.highlight, EASE.outQuart);
+      let bar = prog(t, s, DUR.highlight, EASE.outQuart);
+      if (redo) {
+        bar = t < hlRedoAt!
+          ? bar * (1 - redoOut)
+          : prog(t, hlRedoAt! + (hlTo - hlFrom) * DUR.textInStagger + DUR.textInWord + DUR.highlightDelay, DUR.highlight, EASE.outQuart);
+      }
       const group: React.ReactNode[] = [];
       for (let j = hlFrom; j <= hlTo; j++) {
         group.push(wordEl(words[j], j));

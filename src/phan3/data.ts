@@ -41,6 +41,10 @@ export const HEADLINES: Record<string, HeadlineText> = {
   B8: { q: "Đủ 8 dấu tích?", a: "Chưa chắc xong.", hl: "xong.", sub: "Bấm Chuẩn bị, sửa hết dòng báo rồi mới tới bước nộp." },
 };
 
+// B8: cụm "xong." của dòng trả lời textOut 150ms rồi textIn lại đúng lúc dòng báo lỗi hiện ra
+// (2:27.7, cùng nhịp cắt nhạc + error_buzz). Plan 8 viết chưa rõ; nhóm chốt 10/11, chữ giữ nguyên.
+export const B8_ANSWER_REDO = 147.7;
+
 // ---- Thẻ chương (MG giữa màn)
 export type ChapterLine = { text: string; hl?: string };
 export const CHAPTERS = {

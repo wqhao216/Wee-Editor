@@ -3,7 +3,7 @@
 // ghép ở chặng 3.
 import React from "react";
 import { AbsoluteFill, getInputProps } from "remotion";
-import { CAMERA, CHAPTERS, HEADLINES, STEP_OF, WIPES } from "./data";
+import { B8_ANSWER_REDO, CAMERA, CHAPTERS, HEADLINES, STEP_OF, WIPES } from "./data";
 import { DUR, EASE } from "./tokens";
 import { prog, useT } from "./components/anim";
 import { Background } from "./components/Background";
@@ -49,7 +49,7 @@ const HeadlineLayer: React.FC = () => {
   const h = HEADLINES[s.scene.id];
   const outAt = s.scene.id === "B8" ? FLOW_AT : s.scene.end - DUR.textOut;
   const vis = textVisibility(t);
-  return <Headline q={h.q} a={h.a} hl={h.hl} sub={h.sub} t={t} tIn={s.tIn} subIn={s.tIn + 0.8} outAt={outAt} visibility={vis} visBlur={10 * (1 - vis)} />;
+  return <Headline q={h.q} a={h.a} hl={h.hl} sub={h.sub} t={t} tIn={s.tIn} subIn={s.tIn + 0.8} outAt={outAt} visibility={vis} visBlur={10 * (1 - vis)} hlRedoAt={s.scene.id === "B8" ? B8_ANSWER_REDO : undefined} />;
 };
 
 /** Pill bước: trên card, giữ nguyên khi punchIn (plan 2.5). */

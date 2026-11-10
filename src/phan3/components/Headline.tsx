@@ -22,12 +22,13 @@ type Props = {
   tIn: number; // textIn dòng hỏi + trả lời
   subIn: number; // textIn sub
   aIn?: number; // textIn riêng cho dòng trả lời (nếu khác tIn)
+  hlRedoAt?: number; // cụm highlight của dòng trả lời chạy lại textIn ở mốc này
   outAt: number | null; // textOut cả khối
   visibility: number; // 0..1 do camera (punchIn ẩn khối chữ)
   visBlur: number;
 };
 
-export const Headline: React.FC<Props> = ({ q, a, hl, sub, t, tIn, subIn, aIn, outAt, visibility, visBlur }) => {
+export const Headline: React.FC<Props> = ({ q, a, hl, sub, t, tIn, subIn, aIn, hlRedoAt, outAt, visibility, visBlur }) => {
   const fq = fitLine(q, TYPE.h1q.size, TYPE.h1min, BLOCK_W);
   const fa = fitLine(a, TYPE.h1a.size, TYPE.h1min, BLOCK_W);
   const line = (size: number, wrap: boolean): React.CSSProperties => ({
@@ -50,7 +51,7 @@ export const Headline: React.FC<Props> = ({ q, a, hl, sub, t, tIn, subIn, aIn, o
         <AnimatedWords text={q} start={tIn} t={t} />
       </div>
       <div data-qa="headline-a" data-qa-text={a} data-qa-size={fa.size} style={line(fa.size, fa.wrap)}>
-        <AnimatedWords text={a} start={aStart} t={t} hl={hl} indexOffset={aOffset} />
+        <AnimatedWords text={a} start={aStart} t={t} hl={hl} indexOffset={aOffset} hlRedoAt={hlRedoAt} />
       </div>
       <div
         data-qa="headline-sub"

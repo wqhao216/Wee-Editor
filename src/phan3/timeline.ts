@@ -1,7 +1,7 @@
 // Toán thuần của timeline Phần 3: không React, không DOM, kiểm thử được bằng Node.
 // t = giây trên thành phẩm ("ra"); src = giây trong hai_clean.mp4 ("gốc").
 import {
-  CAMERA, CARD_GROUPS, EDL, FORBIDDEN, SPEED_LABELS, VO,
+  CALLOUTS, CAMERA, CARD_GROUPS, EDL, FORBIDDEN, SPEED_LABELS, VO,
   type CameraCue, type Scene, type Segment,
 } from "./data";
 import { CARD, DUR, FPS, FULL, MAX_ZOOM, SRC_VIEW, SUBTITLE, W, H, type Rect } from "./tokens";
@@ -67,9 +67,13 @@ export type CardInstance = {
 
 const lastPunchOutBefore = (T: number) =>
   Math.max(-Infinity, ...CAMERA.filter((c) => c.t_out <= T + EPS && c.t_out > T - 1).map((c) => c.t_out));
+const lastCalloutOutBefore = (T: number) =>
+  Math.max(-Infinity, ...CALLOUTS.filter((c) => c.t_out <= T + EPS && c.t_out > T - 1).map((c) => c.t_out));
 
-/** Mốc bắt đầu cardSwap trước ranh giới T: ngay sau punchOut nếu có, không sớm hơn T − 0.5. */
-export const swapStart = (T: number) => Math.max(T - 0.5, lastPunchOutBefore(T));
+/** Mốc bắt đầu cardSwap trước ranh giới T: không sớm hơn T − 0.5, và chừa DUR.swapGap sau
+ * punchOut / khung khoanh tắt gần nhất (nhóm chốt 10/11). */
+export const swapStart = (T: number) =>
+  Math.max(T - 0.5, lastPunchOutBefore(T) + DUR.swapGap, lastCalloutOutBefore(T) + DUR.swapGap);
 
 export const cardInstances = (t: number): CardInstance[] => {
   const out: CardInstance[] = [];

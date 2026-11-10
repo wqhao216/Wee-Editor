@@ -71,7 +71,8 @@ export const DUR = {
   cardIn: 0.6,
   cardSwapOut: 0.35,
   cardSwapOverlap: 0.15,
-  jumpCut: 0.2,
+  jumpCut: 0.12, // nhóm chốt: tối đa 120ms (plan 2.5 ghi 200ms), không SFX riêng
+  swapGap: 0.12, // nhóm chốt: chừa 100–150ms giữa punchOut (hoặc khung khoanh tắt) và cardSwap
   punchIn: 0.65,
   punchOut: 0.55,
   punchOutTextIn: 0.2,

@@ -83,11 +83,18 @@ python3 -I scripts/phan3/check_stage2.py                                        
 - Khung gốc lấy bằng `OffthreadVideo trimBefore=<khung gốc>` trong `Freeze frame=0`. Không dùng `Freeze frame=<khung gốc>`: khung > 5100 bị Remotion kẹp về cuối composition, hiện sai trang.
 - Đã kiểm bằng script: tổng 170.0 s; 4629 khung video ra, **0 khung lấy từ đoạn cấm** (kể cả lúc card trượt ra/vào); camera zoom ≤ 2.6× và vùng nhìn nằm trong `[370,150,1610,1000]`; phụ đề 35 trang, mỗi trang ≤ 2 dòng ≤ 42 ký tự, ghép lại đúng nguyên câu.
 
-### Quyết định thiết kế (plan không nói rõ)
-1. Nhãn khung khoanh mặc định đặt **trên** box (cách 12px); nếu đè box/nhãn khác, pill hoặc vùng phụ đề thì lần lượt thử dưới-trái, trên-phải, dưới-phải. Phía đặt chọn một lần cho mỗi khung (không nhảy khi camera chạy).
-2. Khi punchIn, dãy 8 chấm tiến độ có nền trắng mờ phía sau (nếu không sẽ chìm vào ảnh trang web).
-3. Chip "trái dưới"/"dưới card" giữ chỗ plan ghi; riêng lúc card phủ toàn khung mà chip đè khung khoanh đang hiện thì dời sang chỗ trống kế tiếp (đã xảy ra ở 1:59–2:01.8: chip thuế khoán che khung "CHỈ CÒN KÊ KHAI").
-4. Thẻ chốt R nền vàng: vạch highlight dùng màu trắng (vạch vàng trên nền vàng không thấy).
-5. jumpCut áp cho mọi chỗ nối hai đoạn gốc không liền nhau (lệch > 0.35 s) trong cùng bước: 15 chỗ, gồm 4 ví dụ của plan.
-6. speedTag: dùng đúng nhãn plan ghi; đoạn tua > 1.2× mà plan không ghi nhãn thì làm tròn 1 chữ số (×1.3, ×2.5, ×2, ×3.4, ×1.8, ×2.7, ×1.7).
-7. cardSwap bắt đầu ngay sau punchOut (không sớm hơn 0.5 s trước bước mới): cũ ra 350 ms, mới vào 600 ms, chồng 150 ms; card mới dừng ở khung đầu của bước mới cho tới lúc bước bắt đầu.
+### Quyết định thiết kế (plan không nói rõ); nhóm đã chốt ngày 10/11
+1. **B8 lúc 2:27.7: plan viết chưa rõ** ("Dòng trả lời của H1 đổi bằng textIn" nhưng không nói đổi thành gì). Nhóm chốt: chữ giữ nguyên "Đủ 8 dấu tích? / Chưa chắc xong."; riêng cụm "xong." textOut 150ms (2:27.55–2:27.7) rồi textIn lại đúng 2:27.7 (vạch highlight vẽ lại sau đó), cùng nhịp cắt nhạc và error_buzz (chặng âm thanh). `B8_ANSWER_REDO` trong `data.ts`.
+2. Thẻ chốt R nền vàng: vạch highlight màu trắng. Tương phản WCAG: chữ ink trên nền accent 14.50:1, trên vạch trắng 18.88:1; vạch trắng so với nền accent 1.30:1 (vạch accent so với nền bg ở các bước khác: 1.18:1, nên vạch trắng nổi không kém chuẩn của plan).
+3. jumpCut ở mọi chỗ nối hai đoạn gốc không liền nhau trong cùng bước (15 chỗ). Mỗi cái **120ms** (plan 2.5 ghi 200ms), **không SFX riêng**. Chỗ nhịp dày (cách jumpCut trước < 3s, hoặc trùng ±0.3s với punchIn/punchOut) để nhóm xem ở animatic: 0:15.5, 0:18.0, 0:25.5, 0:36.5, 0:47.5, 1:47.0, 2:10.5, 2:33.2 (`work/test/rhythm_test.ts`).
+4. speedTag: dùng nhãn plan ghi; đoạn tua > 1.2× mà plan không ghi thì làm tròn 1 chữ số; ≤ 1.2× không hiện nhãn.
+5. cardSwap bắt đầu sau punchOut (hoặc sau khi khung khoanh cuối tắt) **120ms**, không sớm hơn 0.5s trước bước mới: cũ ra 350ms, mới vào 600ms, chồng 150ms; card mới dừng ở khung đầu của bước mới cho tới lúc bước bắt đầu. Mốc: 0:39.62, 1:05.82, 1:17.72, 1:39.50, 2:01.92.
+6. Nhãn khung khoanh mặc định đặt **trên** box (cách 12px); nếu đè box/nhãn khác, pill hoặc vùng phụ đề thì lần lượt thử dưới-trái, trên-phải, dưới-phải. Phía đặt chọn một lần cho mỗi khung (không nhảy khi camera chạy).
+7. Khi punchIn, dãy 8 chấm tiến độ có nền trắng mờ phía sau (nếu không sẽ chìm vào ảnh trang web).
+8. Chip "trái dưới"/"dưới card" giữ chỗ plan ghi; riêng lúc card phủ toàn khung mà chip đè khung khoanh đang hiện thì dời sang chỗ trống kế tiếp (đã xảy ra ở 1:59–2:01.8: chip thuế khoán che khung "CHỈ CÒN KÊ KHAI").
+
+### Tự kiểm chặng 2 (`qa/style/check_report.txt`)
+- Chữ: 182 chuỗi trên màn có nguyên văn trong plan/cues/srt, dạng NFC. Glyph: chỉ thiếu "→", "✓" (đã vẽ SVG).
+- Bố cục: khối chữ 8 bước nằm trong x 96–720 (dòng trả lời B5 tự co còn 59px), sub ≤ 2 dòng, phụ đề ≤ 2 dòng; ≤ 2 khung khoanh cùng lúc, mỗi khung ≥ 2s; không chip nào che khung khoanh.
+- Khung khoanh đúng chỗ: 34/34 lệch 0px so với vùng `box_src` trên khung gốc (template matching). "CHỈ GÕ TÊN RIÊNG" điểm khớp 0.80 do con trỏ gõ và viền khung ① đè mép, đã xem bằng mắt.
+- OCR (tesseract vie): các dòng bị đọc lệch đều đã xem bằng mắt, dấu hiển thị đúng; lệch do tesseract nhầm "a" của Be Vietnam Pro thành "ơ/ô", "I" thành "l".
