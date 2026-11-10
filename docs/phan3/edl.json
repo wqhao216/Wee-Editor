@@ -1,0 +1,523 @@
+[
+ {
+  "id": "S00",
+  "name": "Mở chương",
+  "start": 0.0,
+  "end": 5.0,
+  "dur": 5.0,
+  "segments": [
+   {
+    "type": "mg",
+    "out_in": 0.0,
+    "out_out": 5.0,
+    "dur": 5.0
+   }
+  ]
+ },
+ {
+  "id": "B1",
+  "name": "Đăng nhập + chọn thủ tục",
+  "start": 5.0,
+  "end": 19.0,
+  "dur": 14.0,
+  "segments": [
+   {
+    "type": "mg",
+    "out_in": 5.0,
+    "out_out": 6.2,
+    "dur": 1.2
+   },
+   {
+    "type": "play",
+    "out_in": 6.2,
+    "out_out": 8.8,
+    "dur": 2.6,
+    "src_in": 3.2,
+    "src_out": 5.8,
+    "speed": 1.0
+   },
+   {
+    "type": "play",
+    "out_in": 8.8,
+    "out_out": 12.8,
+    "dur": 4.0,
+    "src_in": 12.4,
+    "src_out": 17.6,
+    "speed": 1.3
+   },
+   {
+    "type": "freeze",
+    "out_in": 12.8,
+    "out_out": 15.5,
+    "dur": 2.7,
+    "src_at": 17.6
+   },
+   {
+    "type": "play",
+    "out_in": 15.5,
+    "out_out": 18.0,
+    "dur": 2.5,
+    "src_in": 18.0,
+    "src_out": 23.9,
+    "speed": 2.36
+   },
+   {
+    "type": "freeze",
+    "out_in": 18.0,
+    "out_out": 19.0,
+    "dur": 1.0,
+    "src_at": 24.4
+   }
+  ]
+ },
+ {
+  "id": "B2",
+  "name": "Khối dữ liệu + Địa chỉ",
+  "start": 19.0,
+  "end": 40.0,
+  "dur": 21.0,
+  "segments": [
+   {
+    "type": "freeze",
+    "out_in": 19.0,
+    "out_out": 22.5,
+    "dur": 3.5,
+    "src_at": 24.4
+   },
+   {
+    "type": "play",
+    "out_in": 22.5,
+    "out_out": 25.5,
+    "dur": 3.0,
+    "src_in": 28.5,
+    "src_out": 43.6,
+    "speed": 5.03
+   },
+   {
+    "type": "freeze",
+    "out_in": 25.5,
+    "out_out": 29.5,
+    "dur": 4.0,
+    "src_at": 44.5
+   },
+   {
+    "type": "play",
+    "out_in": 29.5,
+    "out_out": 36.5,
+    "dur": 7.0,
+    "src_in": 44.6,
+    "src_out": 95.8,
+    "speed": 7.31
+   },
+   {
+    "type": "freeze",
+    "out_in": 36.5,
+    "out_out": 40.0,
+    "dur": 3.5,
+    "src_at": 97.0
+   }
+  ]
+ },
+ {
+  "id": "B3",
+  "name": "Ngành nghề",
+  "start": 40.0,
+  "end": 66.0,
+  "dur": 26.0,
+  "segments": [
+   {
+    "type": "play",
+    "out_in": 40.0,
+    "out_out": 42.0,
+    "dur": 2.0,
+    "src_in": 99.4,
+    "src_out": 104.4,
+    "speed": 2.5
+   },
+   {
+    "type": "freeze",
+    "out_in": 42.0,
+    "out_out": 44.5,
+    "dur": 2.5,
+    "src_at": 104.4
+   },
+   {
+    "type": "play",
+    "out_in": 44.5,
+    "out_out": 47.5,
+    "dur": 3.0,
+    "src_in": 108.4,
+    "src_out": 112.6,
+    "speed": 1.4
+   },
+   {
+    "type": "freeze",
+    "out_in": 47.5,
+    "out_out": 51.5,
+    "dur": 4.0,
+    "src_at": 116.4
+   },
+   {
+    "type": "play",
+    "out_in": 51.5,
+    "out_out": 56.5,
+    "dur": 5.0,
+    "src_in": 116.4,
+    "src_out": 121.4,
+    "speed": 1.0
+   },
+   {
+    "type": "freeze",
+    "out_in": 56.5,
+    "out_out": 60.0,
+    "dur": 3.5,
+    "src_at": 121.4
+   },
+   {
+    "type": "play",
+    "out_in": 60.0,
+    "out_out": 62.0,
+    "dur": 2.0,
+    "src_in": 126.2,
+    "src_out": 130.2,
+    "speed": 2.0
+   },
+   {
+    "type": "freeze",
+    "out_in": 62.0,
+    "out_out": 66.0,
+    "dur": 4.0,
+    "src_at": 130.2
+   }
+  ]
+ },
+ {
+  "id": "B4",
+  "name": "Tên hộ kinh doanh",
+  "start": 66.0,
+  "end": 78.0,
+  "dur": 12.0,
+  "segments": [
+   {
+    "type": "play",
+    "out_in": 66.0,
+    "out_out": 71.0,
+    "dur": 5.0,
+    "src_in": 161.6,
+    "src_out": 176.6,
+    "speed": 3.0
+   },
+   {
+    "type": "freeze",
+    "out_in": 71.0,
+    "out_out": 73.5,
+    "dur": 2.5,
+    "src_at": 176.6
+   },
+   {
+    "type": "play",
+    "out_in": 73.5,
+    "out_out": 74.7,
+    "dur": 1.2,
+    "src_in": 176.6,
+    "src_out": 177.8,
+    "speed": 1.0
+   },
+   {
+    "type": "freeze",
+    "out_in": 74.7,
+    "out_out": 78.0,
+    "dur": 3.3,
+    "src_at": 177.8
+   }
+  ]
+ },
+ {
+  "id": "B5",
+  "name": "Thông tin chủ hộ",
+  "start": 78.0,
+  "end": 100.0,
+  "dur": 22.0,
+  "segments": [
+   {
+    "type": "play",
+    "out_in": 78.0,
+    "out_out": 81.0,
+    "dur": 3.0,
+    "src_in": 204.2,
+    "src_out": 211.4,
+    "speed": 2.4
+   },
+   {
+    "type": "freeze",
+    "out_in": 81.0,
+    "out_out": 84.0,
+    "dur": 3.0,
+    "src_at": 211.4
+   },
+   {
+    "type": "play",
+    "out_in": 84.0,
+    "out_out": 86.0,
+    "dur": 2.0,
+    "src_in": 214.2,
+    "src_out": 216.0,
+    "speed": 0.9
+   },
+   {
+    "type": "freeze",
+    "out_in": 86.0,
+    "out_out": 92.0,
+    "dur": 6.0,
+    "src_at": 216.0
+   },
+   {
+    "type": "play",
+    "out_in": 92.0,
+    "out_out": 97.0,
+    "dur": 5.0,
+    "src_in": 216.0,
+    "src_out": 233.4,
+    "speed": 3.48
+   },
+   {
+    "type": "play",
+    "out_in": 97.0,
+    "out_out": 98.5,
+    "dur": 1.5,
+    "src_in": 233.4,
+    "src_out": 235.0,
+    "speed": 1.07
+   },
+   {
+    "type": "freeze",
+    "out_in": 98.5,
+    "out_out": 100.0,
+    "dur": 1.5,
+    "src_at": 235.0
+   }
+  ]
+ },
+ {
+  "id": "B6",
+  "name": "Vốn + Thuế",
+  "start": 100.0,
+  "end": 122.0,
+  "dur": 22.0,
+  "segments": [
+   {
+    "type": "play",
+    "out_in": 100.0,
+    "out_out": 104.0,
+    "dur": 4.0,
+    "src_in": 237.6,
+    "src_out": 251.2,
+    "speed": 3.4
+   },
+   {
+    "type": "freeze",
+    "out_in": 104.0,
+    "out_out": 107.0,
+    "dur": 3.0,
+    "src_at": 251.2
+   },
+   {
+    "type": "play",
+    "out_in": 107.0,
+    "out_out": 109.5,
+    "dur": 2.5,
+    "src_in": 253.4,
+    "src_out": 258.0,
+    "speed": 1.84
+   },
+   {
+    "type": "freeze",
+    "out_in": 109.5,
+    "out_out": 112.0,
+    "dur": 2.5,
+    "src_at": 258.0
+   },
+   {
+    "type": "play",
+    "out_in": 112.0,
+    "out_out": 114.5,
+    "dur": 2.5,
+    "src_in": 258.0,
+    "src_out": 263.0,
+    "speed": 2.0
+   },
+   {
+    "type": "play",
+    "out_in": 114.5,
+    "out_out": 118.5,
+    "dur": 4.0,
+    "src_in": 263.0,
+    "src_out": 278.8,
+    "speed": 3.95
+   },
+   {
+    "type": "freeze",
+    "out_in": 118.5,
+    "out_out": 122.0,
+    "dur": 3.5,
+    "src_at": 278.8
+   }
+  ]
+ },
+ {
+  "id": "B7",
+  "name": "Người nộp hồ sơ",
+  "start": 122.0,
+  "end": 141.0,
+  "dur": 19.0,
+  "segments": [
+   {
+    "type": "play",
+    "out_in": 122.0,
+    "out_out": 124.0,
+    "dur": 2.0,
+    "src_in": 283.0,
+    "src_out": 290.8,
+    "speed": 3.9
+   },
+   {
+    "type": "play",
+    "out_in": 124.0,
+    "out_out": 126.0,
+    "dur": 2.0,
+    "src_in": 291.6,
+    "src_out": 298.4,
+    "speed": 3.4
+   },
+   {
+    "type": "freeze",
+    "out_in": 126.0,
+    "out_out": 130.5,
+    "dur": 4.5,
+    "src_at": 298.6
+   },
+   {
+    "type": "play",
+    "out_in": 130.5,
+    "out_out": 135.0,
+    "dur": 4.5,
+    "src_in": 299.8,
+    "src_out": 316.5,
+    "speed": 3.71
+   },
+   {
+    "type": "freeze",
+    "out_in": 135.0,
+    "out_out": 138.0,
+    "dur": 3.0,
+    "src_at": 316.5
+   },
+   {
+    "type": "play",
+    "out_in": 138.0,
+    "out_out": 139.5,
+    "dur": 1.5,
+    "src_in": 316.5,
+    "src_out": 320.5,
+    "speed": 2.67
+   },
+   {
+    "type": "mg",
+    "out_in": 139.5,
+    "out_out": 141.0,
+    "dur": 1.5
+   }
+  ]
+ },
+ {
+  "id": "B8",
+  "name": "Chuẩn bị + sửa lỗi + trang xác nhận",
+  "start": 141.0,
+  "end": 167.0,
+  "dur": 26.0,
+  "segments": [
+   {
+    "type": "mg",
+    "out_in": 141.0,
+    "out_out": 143.0,
+    "dur": 2.0
+   },
+   {
+    "type": "freeze",
+    "out_in": 143.0,
+    "out_out": 146.5,
+    "dur": 3.5,
+    "src_at": 320.8
+   },
+   {
+    "type": "play",
+    "out_in": 146.5,
+    "out_out": 148.7,
+    "dur": 2.2,
+    "src_in": 320.8,
+    "src_out": 323.0,
+    "speed": 1.0
+   },
+   {
+    "type": "freeze",
+    "out_in": 148.7,
+    "out_out": 153.2,
+    "dur": 4.5,
+    "src_at": 323.2
+   },
+   {
+    "type": "play",
+    "out_in": 153.2,
+    "out_out": 155.7,
+    "dur": 2.5,
+    "src_in": 325.8,
+    "src_out": 331.0,
+    "speed": 2.08
+   },
+   {
+    "type": "freeze",
+    "out_in": 155.7,
+    "out_out": 157.9,
+    "dur": 2.2,
+    "src_at": 331.0
+   },
+   {
+    "type": "play",
+    "out_in": 157.9,
+    "out_out": 159.7,
+    "dur": 1.8,
+    "src_in": 337.2,
+    "src_out": 340.2,
+    "speed": 1.67
+   },
+   {
+    "type": "freeze",
+    "out_in": 159.7,
+    "out_out": 164.0,
+    "dur": 4.3,
+    "src_at": 340.5
+   },
+   {
+    "type": "mg",
+    "out_in": 164.0,
+    "out_out": 167.0,
+    "dur": 3.0
+   }
+  ]
+ },
+ {
+  "id": "R",
+  "name": "Chốt",
+  "start": 167.0,
+  "end": 170.0,
+  "dur": 3.0,
+  "segments": [
+   {
+    "type": "mg",
+    "out_in": 167.0,
+    "out_out": 170.0,
+    "dur": 3.0
+   }
+  ]
+ }
+]

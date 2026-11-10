@@ -1,0 +1,1212 @@
+{
+ "callouts": [
+  {
+   "scene": "B1",
+   "t_in": 6.6,
+   "t_out": 8.6,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    440,
+    505,
+    1090,
+    990
+   ],
+   "label": "ĐĂNG NHẬP VNeID",
+   "num": null,
+   "measured_on_src": 4.0,
+   "src_visible_at_t_in": [
+    "play",
+    3.61
+   ]
+  },
+  {
+   "scene": "B1",
+   "t_in": 13.1,
+   "t_out": 15.2,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    412,
+    268,
+    645,
+    295
+   ],
+   "label": "CHỌN DÒNG NÀY",
+   "num": null,
+   "measured_on_src": 17.6,
+   "src_visible_at_t_in": [
+    "freeze",
+    17.6
+   ]
+  },
+  {
+   "scene": "B1",
+   "t_in": 13.2,
+   "t_out": 15.2,
+   "variant": "danger",
+   "dashed": true,
+   "box_src": [
+    412,
+    296,
+    705,
+    352
+   ],
+   "label": "DỄ BẤM NHẦM",
+   "num": null,
+   "measured_on_src": 17.6,
+   "src_visible_at_t_in": [
+    "freeze",
+    17.6
+   ]
+  },
+  {
+   "scene": "B2",
+   "t_in": 19.4,
+   "t_out": 22.4,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    390,
+    228,
+    625,
+    452
+   ],
+   "label": "8 PHẦN · ĐI TỪ TRÊN XUỐNG",
+   "num": null,
+   "measured_on_src": 24.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    24.4
+   ]
+  },
+  {
+   "scene": "B2",
+   "t_in": 25.9,
+   "t_out": 28.9,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    925,
+    507,
+    1303,
+    532
+   ],
+   "label": "ĐANG ĐỂ SẴN CẦN THƠ",
+   "num": null,
+   "measured_on_src": 44.5,
+   "src_visible_at_t_in": [
+    "freeze",
+    44.5
+   ]
+  },
+  {
+   "scene": "B2",
+   "t_in": 27.0,
+   "t_out": 29.2,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    925,
+    534,
+    1303,
+    559
+   ],
+   "label": "CHỈ CÒN TỈNH + PHƯỜNG/XÃ",
+   "num": null,
+   "measured_on_src": 44.5,
+   "src_visible_at_t_in": [
+    "freeze",
+    44.5
+   ]
+  },
+  {
+   "scene": "B2",
+   "t_in": 36.9,
+   "t_out": 39.4,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    390,
+    295,
+    560,
+    320
+   ],
+   "label": "ĐÃ LƯU",
+   "num": null,
+   "measured_on_src": 97.0,
+   "src_visible_at_t_in": [
+    "freeze",
+    97.0
+   ]
+  },
+  {
+   "scene": "B3",
+   "t_in": 42.2,
+   "t_out": 44.4,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    648,
+    492,
+    1262,
+    522
+   ],
+   "label": "HỎI MÃ SỐ TRƯỚC",
+   "num": null,
+   "measured_on_src": 104.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    104.4
+   ]
+  },
+  {
+   "scene": "B3",
+   "t_in": 47.9,
+   "t_out": 51.3,
+   "variant": "danger",
+   "dashed": true,
+   "box_src": [
+    683,
+    640,
+    708,
+    750
+   ],
+   "label": "Ô VUÔNG = CHỌN DÒNG",
+   "num": 1,
+   "measured_on_src": 116.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    116.4
+   ]
+  },
+  {
+   "scene": "B3",
+   "t_in": 48.6,
+   "t_out": 51.3,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    708,
+    640,
+    805,
+    750
+   ],
+   "label": "NÚT TRÒN = NGÀNH CHÍNH",
+   "num": 2,
+   "measured_on_src": 116.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    116.4
+   ]
+  },
+  {
+   "scene": "B3",
+   "t_in": 56.7,
+   "t_out": 59.8,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    700,
+    680,
+    740,
+    720
+   ],
+   "label": "VẪN CHƯA CÓ NGÀNH CHÍNH",
+   "num": null,
+   "measured_on_src": 121.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    121.4
+   ]
+  },
+  {
+   "scene": "B3",
+   "t_in": 57.6,
+   "t_out": 59.8,
+   "variant": "warn",
+   "dashed": false,
+   "box_src": [
+    390,
+    287,
+    625,
+    310
+   ],
+   "label": "NHƯNG ĐÃ CÓ DẤU TÍCH",
+   "num": null,
+   "measured_on_src": 121.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    121.4
+   ]
+  },
+  {
+   "scene": "B3",
+   "t_in": 62.4,
+   "t_out": 65.6,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    645,
+    748,
+    1345,
+    780
+   ],
+   "label": "CHỈ CÓ NHÓM A, B, C… · KHÔNG TÌM THEO TÊN",
+   "num": null,
+   "measured_on_src": 130.2,
+   "src_visible_at_t_in": [
+    "freeze",
+    130.2
+   ]
+  },
+  {
+   "scene": "B4",
+   "t_in": 71.3,
+   "t_out": 73.4,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    889,
+    441,
+    1138,
+    469
+   ],
+   "label": "CÓ SẴN",
+   "num": 1,
+   "measured_on_src": 176.6,
+   "src_visible_at_t_in": [
+    "freeze",
+    176.6
+   ]
+  },
+  {
+   "scene": "B4",
+   "t_in": 71.4,
+   "t_out": 73.4,
+   "variant": "danger",
+   "dashed": true,
+   "box_src": [
+    889,
+    465,
+    1381,
+    495
+   ],
+   "label": "CHỈ GÕ TÊN RIÊNG",
+   "num": 2,
+   "measured_on_src": 176.6,
+   "src_visible_at_t_in": [
+    "freeze",
+    176.6
+   ]
+  },
+  {
+   "scene": "B4",
+   "t_in": 75.0,
+   "t_out": 77.6,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    522,
+    284,
+    1275,
+    310
+   ],
+   "label": "KHÔNG TRÙNG · ĐẶT ĐƯỢC",
+   "num": null,
+   "measured_on_src": 177.8,
+   "src_visible_at_t_in": [
+    "freeze",
+    177.8
+   ]
+  },
+  {
+   "scene": "B5",
+   "t_in": 81.3,
+   "t_out": 83.9,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    642,
+    412,
+    915,
+    445
+   ],
+   "label": "SAO CHÉP",
+   "num": 1,
+   "measured_on_src": 211.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    211.4
+   ]
+  },
+  {
+   "scene": "B5",
+   "t_in": 81.8,
+   "t_out": 83.9,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    642,
+    595,
+    890,
+    628
+   ],
+   "label": "RỒI ĐỐI CHIẾU",
+   "num": 2,
+   "measured_on_src": 211.4,
+   "src_visible_at_t_in": [
+    "freeze",
+    211.4
+   ]
+  },
+  {
+   "scene": "B5",
+   "t_in": 86.4,
+   "t_out": 89.2,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    652,
+    412,
+    908,
+    446
+   ],
+   "label": "KHỚP RỒI ✓",
+   "num": null,
+   "measured_on_src": 216.0,
+   "src_visible_at_t_in": [
+    "freeze",
+    216.0
+   ]
+  },
+  {
+   "scene": "B5",
+   "t_in": 89.2,
+   "t_out": 91.8,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    925,
+    695,
+    1303,
+    722
+   ],
+   "label": "LẠI ĐỂ SẴN CẦN THƠ",
+   "num": null,
+   "measured_on_src": 216.0,
+   "src_visible_at_t_in": [
+    "freeze",
+    216.0
+   ]
+  },
+  {
+   "scene": "B6",
+   "t_in": 104.4,
+   "t_out": 106.8,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    925,
+    466,
+    1140,
+    522
+   ],
+   "label": "ĐỌC LẠI DÒNG BẰNG CHỮ",
+   "num": null,
+   "measured_on_src": 251.2,
+   "src_visible_at_t_in": [
+    "freeze",
+    251.2
+   ]
+  },
+  {
+   "scene": "B6",
+   "t_in": 109.7,
+   "t_out": 111.9,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    650,
+    478,
+    820,
+    502
+   ],
+   "label": "ĐANG CHỌN SẴN “ĐỊA CHỈ KHÁC”",
+   "num": null,
+   "measured_on_src": 258.0,
+   "src_visible_at_t_in": [
+    "freeze",
+    258.0
+   ]
+  },
+  {
+   "scene": "B6",
+   "t_in": 113.6,
+   "t_out": 115.6,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    650,
+    456,
+    870,
+    480
+   ],
+   "label": "CHỌN CÁI NÀY",
+   "num": null,
+   "measured_on_src": 263.0,
+   "src_visible_at_t_in": [
+    "play",
+    261.22
+   ]
+  },
+  {
+   "scene": "B6",
+   "t_in": 118.8,
+   "t_out": 121.8,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    650,
+    893,
+    830,
+    916
+   ],
+   "label": "CHỈ CÒN KÊ KHAI",
+   "num": null,
+   "measured_on_src": 278.8,
+   "src_visible_at_t_in": [
+    "freeze",
+    278.8
+   ]
+  },
+  {
+   "scene": "B6",
+   "t_in": 119.6,
+   "t_out": 121.8,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    925,
+    812,
+    1300,
+    866
+   ],
+   "label": "NGÀY BẮT ĐẦU + SỐ LAO ĐỘNG",
+   "num": null,
+   "measured_on_src": 278.8,
+   "src_visible_at_t_in": [
+    "freeze",
+    278.8
+   ]
+  },
+  {
+   "scene": "B7",
+   "t_in": 126.3,
+   "t_out": 130.3,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    648,
+    438,
+    1075,
+    462
+   ],
+   "label": "TỰ NỘP → CHỌN DÒNG NÀY",
+   "num": 1,
+   "measured_on_src": 298.6,
+   "src_visible_at_t_in": [
+    "freeze",
+    298.6
+   ]
+  },
+  {
+   "scene": "B7",
+   "t_in": 127.6,
+   "t_out": 130.3,
+   "variant": "danger",
+   "dashed": true,
+   "box_src": [
+    648,
+    463,
+    1460,
+    488
+   ],
+   "label": "CHỈ KHI NHỜ NGƯỜI KHÁC NỘP",
+   "num": 2,
+   "measured_on_src": 298.6,
+   "src_visible_at_t_in": [
+    "freeze",
+    298.6
+   ]
+  },
+  {
+   "scene": "B7",
+   "t_in": 135.3,
+   "t_out": 137.8,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    655,
+    598,
+    902,
+    630
+   ],
+   "label": "KHỚP ✓",
+   "num": null,
+   "measured_on_src": 316.5,
+   "src_visible_at_t_in": [
+    "freeze",
+    316.5
+   ]
+  },
+  {
+   "scene": "B8",
+   "t_in": 143.3,
+   "t_out": 145.4,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    390,
+    228,
+    625,
+    452
+   ],
+   "label": "ĐỦ 8 DẤU TÍCH",
+   "num": null,
+   "measured_on_src": 320.8,
+   "src_visible_at_t_in": [
+    "freeze",
+    320.8
+   ]
+  },
+  {
+   "scene": "B8",
+   "t_in": 145.4,
+   "t_out": 147.6,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    872,
+    424,
+    958,
+    453
+   ],
+   "label": "BẤM CHUẨN BỊ",
+   "num": null,
+   "measured_on_src": 320.8,
+   "src_visible_at_t_in": [
+    "freeze",
+    320.8
+   ]
+  },
+  {
+   "scene": "B8",
+   "t_in": 149.0,
+   "t_out": 153.0,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    652,
+    240,
+    1545,
+    270
+   ],
+   "label": "PHẢI CHỌN NGÀNH CHÍNH · LỖI TỪ BƯỚC 3",
+   "num": null,
+   "measured_on_src": 323.2,
+   "src_visible_at_t_in": [
+    "freeze",
+    323.2
+   ]
+  },
+  {
+   "scene": "B8",
+   "t_in": 155.8,
+   "t_out": 157.9,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    700,
+    764,
+    738,
+    796
+   ],
+   "label": "NÚT TRÒN ✓",
+   "num": null,
+   "measured_on_src": 331.0,
+   "src_visible_at_t_in": [
+    "freeze",
+    331.0
+   ]
+  },
+  {
+   "scene": "B8",
+   "t_in": 160.0,
+   "t_out": 163.8,
+   "variant": "ok",
+   "dashed": false,
+   "box_src": [
+    630,
+    434,
+    1320,
+    462
+   ],
+   "label": "TRANG XÁC NHẬN · HẾT LỖI",
+   "num": null,
+   "measured_on_src": 340.5,
+   "src_visible_at_t_in": [
+    "freeze",
+    340.5
+   ]
+  },
+  {
+   "scene": "B8",
+   "t_in": 161.0,
+   "t_out": 163.9,
+   "variant": "danger",
+   "dashed": false,
+   "box_src": [
+    620,
+    478,
+    848,
+    510
+   ],
+   "label": "BẤM LÀ NỘP THẬT · NHÓM DỪNG Ở ĐÂY",
+   "num": null,
+   "measured_on_src": 340.5,
+   "src_visible_at_t_in": [
+    "freeze",
+    340.5
+   ]
+  }
+ ],
+ "camera": [
+  {
+   "t_in": 12.8,
+   "t_out": 15.4,
+   "roi_src": [
+    395,
+    250,
+    730,
+    365
+   ]
+  },
+  {
+   "t_in": 25.5,
+   "t_out": 29.4,
+   "roi_src": [
+    600,
+    470,
+    1320,
+    580
+   ]
+  },
+  {
+   "t_in": 36.5,
+   "t_out": 39.5,
+   "roi_src": [
+    375,
+    185,
+    765,
+    345
+   ]
+  },
+  {
+   "t_in": 47.5,
+   "t_out": 51.4,
+   "roi_src": [
+    650,
+    625,
+    900,
+    770
+   ]
+  },
+  {
+   "t_in": 62.0,
+   "t_out": 65.7,
+   "roi_src": [
+    630,
+    700,
+    1360,
+    840
+   ]
+  },
+  {
+   "t_in": 71.0,
+   "t_out": 73.4,
+   "roi_src": [
+    870,
+    430,
+    1560,
+    505
+   ]
+  },
+  {
+   "t_in": 86.0,
+   "t_out": 91.8,
+   "roi_src": [
+    630,
+    395,
+    1320,
+    735
+   ]
+  },
+  {
+   "t_in": 104.0,
+   "t_out": 106.9,
+   "roi_src": [
+    880,
+    450,
+    1200,
+    530
+   ]
+  },
+  {
+   "t_in": 118.5,
+   "t_out": 121.8,
+   "roi_src": [
+    630,
+    795,
+    1320,
+    925
+   ]
+  },
+  {
+   "t_in": 126.0,
+   "t_out": 130.4,
+   "roi_src": [
+    635,
+    425,
+    1475,
+    500
+   ]
+  },
+  {
+   "t_in": 143.0,
+   "t_out": 145.3,
+   "roi_src": [
+    375,
+    220,
+    645,
+    460
+   ]
+  },
+  {
+   "t_in": 148.7,
+   "t_out": 153.1,
+   "roi_src": [
+    630,
+    225,
+    1565,
+    285
+   ]
+  }
+ ],
+ "vo": [
+  {
+   "t": 0.4,
+   "text": "Giờ mình làm cùng bạn, tám bước, trên hệ thống thật.",
+   "syllables": 11,
+   "est_end": 4.8
+  },
+  {
+   "t": 6.3,
+   "text": "Đăng nhập bằng VNeID.",
+   "syllables": 6,
+   "est_end": 8.7
+  },
+  {
+   "t": 9.0,
+   "text": "Chọn Thành lập mới hộ kinh doanh.",
+   "syllables": 7,
+   "est_end": 11.8
+  },
+  {
+   "t": 12.9,
+   "text": "Ba dòng sát nhau, dễ bấm nhầm, nhìn kỹ rồi mới Tiếp theo.",
+   "syllables": 13,
+   "est_end": 18.1
+  },
+  {
+   "t": 19.3,
+   "text": "Cột Khối dữ liệu là tám phần của hồ sơ, đi lần lượt từ trên xuống.",
+   "syllables": 16,
+   "est_end": 25.7
+  },
+  {
+   "t": 25.8,
+   "text": "Ở Địa chỉ, ô tỉnh đang chọn sẵn Cần Thơ, nhớ đổi sang tỉnh của bạn.",
+   "syllables": 16,
+   "est_end": 32.2
+  },
+  {
+   "t": 32.4,
+   "text": "Không còn quận, huyện, chọn thẳng phường, xã mới.",
+   "syllables": 9,
+   "est_end": 36.0
+  },
+  {
+   "t": 36.6,
+   "text": "Lưu xong, dòng đó có dấu tích xanh.",
+   "syllables": 8,
+   "est_end": 39.8
+  },
+  {
+   "t": 40.3,
+   "text": "Hệ thống hỏi mã ngành trước.",
+   "syllables": 6,
+   "est_end": 42.7
+  },
+  {
+   "t": 44.6,
+   "text": "Gõ mã, bấm Chọn.",
+   "syllables": 4,
+   "est_end": 46.2
+  },
+  {
+   "t": 47.6,
+   "text": "Cẩn thận: ô vuông chỉ để chọn dòng. Ngành chính là nút tròn bên cạnh.",
+   "syllables": 15,
+   "est_end": 53.6
+  },
+  {
+   "t": 54.2,
+   "text": "Tích ô vuông, Cập nhật chính, hệ thống im lặng.",
+   "syllables": 10,
+   "est_end": 58.2
+  },
+  {
+   "t": 60.2,
+   "text": "Không nhớ mã? Chỉ có cây ngành theo nhóm, không tìm theo tên.",
+   "syllables": 13,
+   "est_end": 65.4
+  },
+  {
+   "t": 66.3,
+   "text": "Chữ Hộ kinh doanh đã có sẵn, bạn chỉ gõ phần tên riêng.",
+   "syllables": 13,
+   "est_end": 71.5
+  },
+  {
+   "t": 71.8,
+   "text": "Gõ xong, bấm Kiểm tra trùng tên.",
+   "syllables": 7,
+   "est_end": 74.6
+  },
+  {
+   "t": 75.2,
+   "text": "Không trùng là đặt được.",
+   "syllables": 5,
+   "est_end": 77.2
+  },
+  {
+   "t": 78.3,
+   "text": "Chủ hộ là bạn thì chọn Cá nhân.",
+   "syllables": 8,
+   "est_end": 81.5
+  },
+  {
+   "t": 81.6,
+   "text": "Bấm Sao chép, rồi Đối chiếu với cơ sở dữ liệu dân cư.",
+   "syllables": 13,
+   "est_end": 86.8
+  },
+  {
+   "t": 87.0,
+   "text": "Thấy dòng Khớp là đúng.",
+   "syllables": 5,
+   "est_end": 89.0
+  },
+  {
+   "t": 89.3,
+   "text": "Ô tỉnh nơi ở lại chọn sẵn Cần Thơ, nhớ đổi lần nữa.",
+   "syllables": 13,
+   "est_end": 94.5
+  },
+  {
+   "t": 97.0,
+   "text": "Rồi bấm Lưu.",
+   "syllables": 3,
+   "est_end": 98.2
+  },
+  {
+   "t": 100.3,
+   "text": "Vốn chỉ cần gõ số.",
+   "syllables": 5,
+   "est_end": 102.3
+  },
+  {
+   "t": 104.2,
+   "text": "Đọc lại dòng Bằng chữ để chắc không thừa, thiếu số không.",
+   "syllables": 12,
+   "est_end": 109.0
+  },
+  {
+   "t": 109.6,
+   "text": "Thuế đang chọn sẵn Địa chỉ khác. Nhận thông báo ở chỗ kinh doanh thì chọn Giống trụ sở chính.",
+   "syllables": 20,
+   "est_end": 117.6
+  },
+  {
+   "t": 118.5,
+   "text": "Thuế khoán đã bỏ, chỉ còn kê khai.",
+   "syllables": 8,
+   "est_end": 121.7
+  },
+  {
+   "t": 122.3,
+   "text": "Đến người nộp hồ sơ.",
+   "syllables": 5,
+   "est_end": 124.3
+  },
+  {
+   "t": 126.1,
+   "text": "Tự nộp cho mình thì chọn Người có thẩm quyền ký Giấy đề nghị. Chỉ chọn ủy quyền khi nhờ người khác nộp hộ.",
+   "syllables": 24,
+   "est_end": 135.7
+  },
+  {
+   "t": 135.9,
+   "text": "Sao chép, đối chiếu, điền nơi ở, rồi Lưu.",
+   "syllables": 9,
+   "est_end": 139.5
+  },
+  {
+   "t": 143.2,
+   "text": "Đủ tám dấu tích, bấm Chuẩn bị.",
+   "syllables": 7,
+   "est_end": 146.0
+  },
+  {
+   "t": 148.4,
+   "text": "Hệ thống vẫn báo: phải chọn một ngành nghề kinh doanh chính. Đúng chỗ ô vuông lúc nãy.",
+   "syllables": 18,
+   "est_end": 155.6
+  },
+  {
+   "t": 156.2,
+   "text": "Chọn nút tròn, Cập nhật chính, Chuẩn bị lại.",
+   "syllables": 9,
+   "est_end": 159.8
+  },
+  {
+   "t": 160.3,
+   "text": "Hết lỗi mới tới trang xác nhận. Bấm Nộp là hồ sơ đi thật.",
+   "syllables": 14,
+   "est_end": 165.9
+  }
+ ],
+ "masks": [
+  {
+   "id": "M0",
+   "src_from": 0.0,
+   "src_to": 6.4,
+   "box_src_at_ref": [
+    1195,
+    530,
+    1505,
+    845
+   ],
+   "dy_steps": [
+    {
+     "src_from": 0.0,
+     "src_to": 6.4,
+     "dy": 0
+    }
+   ],
+   "what": "Mã QR đăng nhập VNeID"
+  },
+  {
+   "id": "M1",
+   "src_from": 6.4,
+   "src_to": 349.6,
+   "box_src_at_ref": [
+    1320,
+    0,
+    1535,
+    48
+   ],
+   "dy_steps": [
+    {
+     "src_from": 6.4,
+     "src_to": 349.6,
+     "dy": 0
+    }
+   ],
+   "what": "Tên tài khoản ở header"
+  },
+  {
+   "id": "M2",
+   "src_from": 44.0,
+   "src_to": 99.4,
+   "box_src_at_ref": [
+    920,
+    560,
+    1310,
+    770
+   ],
+   "dy_steps": [
+    {
+     "src_from": 44.0,
+     "src_to": 96.3,
+     "dy": 0
+    },
+    {
+     "src_from": 96.3,
+     "src_to": 99.4,
+     "dy": 37
+    }
+   ],
+   "what": "Địa chỉ: số nhà, điện thoại, fax, email, website (ref 44.5)"
+  },
+  {
+   "id": "M4",
+   "src_from": 204.0,
+   "src_to": 237.5,
+   "box_src_at_ref": [
+    920,
+    455,
+    1310,
+    1080
+   ],
+   "dy_steps": [
+    {
+     "src_from": 204.0,
+     "src_to": 212.3,
+     "dy": 0
+    },
+    {
+     "src_from": 212.3,
+     "src_to": 214.0,
+     "dy": 147
+    },
+    {
+     "src_from": 214.0,
+     "src_to": 233.3,
+     "dy": -5
+    },
+    {
+     "src_from": 233.3,
+     "src_to": 234.3,
+     "dy": 40
+    },
+    {
+     "src_from": 234.3,
+     "src_to": 237.5,
+     "dy": 184
+    }
+   ],
+   "what": "Chủ hộ: toàn cột giá trị (ref 211.4)"
+  },
+  {
+   "id": "M5",
+   "src_from": 253.3,
+   "src_to": 282.7,
+   "box_src_at_ref": [
+    920,
+    615,
+    1310,
+    808
+   ],
+   "dy_steps": [
+    {
+     "src_from": 253.3,
+     "src_to": 279.1,
+     "dy": 0
+    },
+    {
+     "src_from": 279.1,
+     "src_to": 282.7,
+     "dy": 37
+    }
+   ],
+   "what": "Thuế: số nhà, điện thoại, fax, email (ref 278.8)"
+  },
+  {
+   "id": "M6",
+   "src_from": 282.7,
+   "src_to": 319.45,
+   "box_src_at_ref": [
+    920,
+    575,
+    1310,
+    1080
+   ],
+   "dy_steps": [
+    {
+     "src_from": 282.7,
+     "src_to": 291.1,
+     "dy": -162
+    },
+    {
+     "src_from": 291.1,
+     "src_to": 299.6,
+     "dy": 0
+    },
+    {
+     "src_from": 299.6,
+     "src_to": 313.1,
+     "dy": -162
+    },
+    {
+     "src_from": 313.1,
+     "src_to": 315.6,
+     "dy": -273
+    },
+    {
+     "src_from": 315.6,
+     "src_to": 319.45,
+     "dy": 64
+    }
+   ],
+   "what": "Người nộp: toàn cột giá trị (ref 298.6)"
+  }
+ ],
+ "mask_holes": [
+  {
+   "id": "H4",
+   "src_from": 214.0,
+   "src_to": 216.05,
+   "box_src": [
+    920,
+    690,
+    1310,
+    724
+   ],
+   "what": "Tỉnh/Thành phố của chủ hộ, để khoanh “Lại để sẵn Cần Thơ”"
+  }
+ ],
+ "forbidden_src": [
+  {
+   "src_from": 331.2,
+   "src_to": 331.6,
+   "why": "vệt đen che bảng ngành"
+  },
+  {
+   "src_from": 1.6,
+   "src_to": 3.1,
+   "why": "tooltip Chrome (không riêng tư, chỉ rối mắt)"
+  },
+  {
+   "src_from": 106.0,
+   "src_to": 108.2,
+   "why": "ô mã bị dán nhầm một đoạn ghi chú"
+  },
+  {
+   "src_from": 211.9,
+   "src_to": 214.1,
+   "why": "lộ họ tên, ngày sinh, số định danh, liên hệ"
+  },
+  {
+   "src_from": 281.0,
+   "src_to": 282.7,
+   "why": "lộ số nhà, điện thoại, email"
+  },
+  {
+   "src_from": 290.9,
+   "src_to": 291.5,
+   "why": "lộ khung thông tin người nộp chưa che"
+  }
+ ]
+}
