@@ -62,6 +62,8 @@ Tóm lại: mốc đổi dy của plan sớm hoặc muộn 1–7 khung, và plan
 - `qa/privacy_sheet.png`: 345 khung, mỗi 0.5 s ở các đoạn 40–100, 200–240, 250–321, cắt vùng trang x 370–1610. Khung có cờ OCR có nhãn đỏ. `qa/privacy_detail/*.png`: cùng các khung, cắt x 600–1620 ở tỉ lệ 0.6 để soi.
 - OCR: `tesseract -l vie+eng --psm 11`, ảnh xám phóng 2×, gọi qua stdin/stdout (không ghi ảnh tạm), `OMP_THREAD_LIMIT=1`.
 - Tự kiểm bộ dò trên khung **gốc** đã biết lộ (`--selftest-raw`): bắt được họ tên, SĐT, email, `@`. **Không** bắt được số định danh 12 số ở 212.5 (OCR không đọc ra đủ 12 số liền). Vì vậy cờ `12-so` chỉ là lớp kiểm phụ, vẫn phải xem bằng mắt.
+- **Quét thêm từng khung** (`scan_all_frames.py`, 5130 khung của 3 đoạn QA): không khung nào có cờ họ tên, SĐT, số định danh, email, số nhà/đường, `sdt-mau` hay `ngay-sinh`. Các cờ còn lại chỉ thuộc 3 loại: `at`, `12-so` (ô vốn) và hai dòng blocklist ứng với trường tỉnh/phường mà mục 6.3 để lộ. Hai dòng blocklist này **chờ nhóm quyết định**, xem báo cáo chặng 1, không ghi chi tiết ở đây.
 - Cờ sai đã xác nhận bằng mắt:
   - `at`: email liên hệ công khai của Cục ở footer trang (y ≈ 1044–1063) và icon (nút "?" ở x ≈ 1282–1319, nút radio ở x ≈ 649–717, nút "về đầu trang" ở x ≈ 1842–1956) bị OCR đọc thành `@`.
-  - `12-so` ở 251.5: ô vốn mẫu, OCR đọc dấu phẩy thập phân thành dấu chấm.
+    Ngoài ra còn nút radio ở cột trái (Cá nhân / Giống địa chỉ trụ sở…), icon lịch cạnh ô ngày, và chính các ô mosaic bị OCR đọc thành `@`.
+  - `12-so` ở 251.1–251.6: ô vốn mẫu, OCR đọc dấu phẩy thập phân thành dấu chấm.
