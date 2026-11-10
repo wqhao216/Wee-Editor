@@ -2,3 +2,5 @@ node_modules/
 out/
 .remotion/
 input/
+work/
+qa/
