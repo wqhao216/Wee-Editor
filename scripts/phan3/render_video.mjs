@@ -26,7 +26,9 @@ const t0 = Date.now();
 let last = -1;
 await renderMedia({
   composition, serveUrl, outputLocation: output, codec: "h264", crf: 18, pixelFormat: "yuv420p",
-  x264Preset: "medium", imageFormat: "jpeg", jpegQuality: 95, muted: true, enforceAudioTrack: false,
+  // PNG (không phải JPEG) để ffmpeg ra yuv420p dải màu TV đúng plan mục 1 (JPEG cho ra yuvj420p).
+  x264Preset: "medium", imageFormat: process.env.FRAME_FORMAT ?? "png", jpegQuality: 95, muted: true, enforceAudioTrack: false,
+  colorSpace: "bt709",
   browserExecutable, chromeMode: "headless-shell", concurrency: Math.max(1, os.cpus().length),
   onProgress: ({ progress }) => {
     const p = Math.floor(progress * 20);

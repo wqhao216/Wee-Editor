@@ -34,7 +34,7 @@ const collect = () =>
       ...textBox(el),
       qa: d.qa, text: d.qaText ?? null, size: d.qaSize ? Number(d.qaSize) : null, side: d.qaSide ?? null,
       src: d.qaSrc ? JSON.parse(d.qaSrc) : null, srcFrame: d.qaSrcFrame ? Number(d.qaSrcFrame) : null,
-      view: d.qaView ? JSON.parse(d.qaView) : null, lines: d.qaLines ? Number(d.qaLines) : null,
+      view: d.qaView ? JSON.parse(d.qaView) : null, lines: d.qaLines ? Number(d.qaLines) : null, dots: d.qaDots ?? null,
       rect: { x1: r.left, y1: r.top, x2: r.right, y2: r.bottom },
       lineHeight: parseFloat(getComputedStyle(el).lineHeight) || null,
       scrollW: el.scrollWidth, clientW: el.clientWidth,

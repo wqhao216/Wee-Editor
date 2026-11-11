@@ -22,8 +22,10 @@ if (!existsSync(pub) || statSync(pub).ino !== statSync(clean).ino) {
 }
 
 const fmt = (s) => {
-  const m = Math.floor(s / 60), r = (s - m * 60).toFixed(1).padStart(4, "0");
-  return `${m}m${r.replace(".", "s")}`;
+  // 0m13s8 khi mốc tròn tới 0.1s; còn lại giữ mili giây (0m13s467) để hai mốc gần nhau không trùng tên file
+  const m = Math.floor(s / 60), r = s - m * 60;
+  const tenth = Math.abs(r * 10 - Math.round(r * 10)) < 1e-6;
+  return `${m}m${(tenth ? r.toFixed(1) : r.toFixed(3)).padStart(tenth ? 4 : 6, "0").replace(".", "s")}`;
 };
 
 const serveUrl = await bundle({ entryPoint: path.join(root, "src/index.ts"), publicDir: path.join(root, "public") });

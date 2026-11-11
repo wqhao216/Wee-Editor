@@ -22,9 +22,14 @@ const labelWidth = (c: CalloutCue) =>
 
 const padded = (r: Rect): Rect => ({ x1: r.x1 - PAD, y1: r.y1 - PAD, x2: r.x2 + PAD, y2: r.y2 + PAD });
 
+// Vùng an toàn (plan 2.3: cách mép 96px). Nhãn bị kẹp vào vùng này, kể cả khi camera zoom sát mép.
+const SAFE: Rect = { x1: 96, y1: 96, x2: W - 96, y2: H - 96 };
+
 const labelRect = (box: Rect, side: Side, w: number): Rect => {
-  const left = side.endsWith("right") ? box.x2 - w : box.x1;
-  const top = side.startsWith("above") ? box.y1 - GAP - LABEL_H : side.startsWith("below") ? box.y2 + GAP : box.y1 + 6;
+  let left = side.endsWith("right") ? box.x2 - w : box.x1;
+  let top = side.startsWith("above") ? box.y1 - GAP - LABEL_H : side.startsWith("below") ? box.y2 + GAP : box.y1 + 6;
+  left = Math.min(Math.max(left, SAFE.x1), SAFE.x2 - w);
+  top = Math.min(Math.max(top, SAFE.y1), SAFE.y2 - LABEL_H);
   return { x1: left, y1: top, x2: left + w, y2: top + LABEL_H };
 };
 
@@ -50,8 +55,8 @@ const getPlacements = () => {
     let chosen: Side = "inside";
     for (const side of ["above-left", "below-left", "above-right", "below-right"] as Side[]) {
       const r = labelRect(box, side, w);
-      const inFrame = r.x1 >= 16 && r.x2 <= W - 16 && r.y1 >= 16 && r.y2 <= H - 16;
-      if (!inFrame || hit(r, PILL_ZONE) || hit(r, SUB_ZONE)) continue;
+      // sau khi kẹp vào vùng an toàn, nhãn không được đè lên chính box của nó
+      if (hit(r, box) || hit(r, PILL_ZONE) || hit(r, SUB_ZONE)) continue;
       if (others.some((o) => hit(r, o)) || earlierLabels.some((o) => hit(r, o))) continue;
       chosen = side;
       placed.push({ c, r });

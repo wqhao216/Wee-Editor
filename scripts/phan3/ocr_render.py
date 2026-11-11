@@ -97,8 +97,10 @@ def main() -> None:
     if not per_type:
         rep.append("  (không có)")
     QA.mkdir(exist_ok=True)
-    (QA / "ocr_animatic_report.txt").write_text("\n".join(rep) + "\n", encoding="utf-8")
-    (QA / "ocr_animatic_frames.txt").write_text("giây ra | loại cờ | box dòng chữ (px)\n" + "\n".join(lines) + "\n", encoding="utf-8")
+    # bản cuối out/phan3_v2.mp4 -> qa/ocr_report.txt (tên plan mục 10); bản khác -> qa/ocr_<tên>_report.txt
+    tag = "" if video.name == "phan3_v2.mp4" else video.stem.replace("phan3_v2_", "") + "_"
+    (QA / f"ocr_{tag}report.txt").write_text("\n".join(rep) + "\n", encoding="utf-8")
+    (QA / f"ocr_{tag}frames.txt").write_text("giây ra | loại cờ | box dòng chữ (px)\n" + "\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(rep))
 
 

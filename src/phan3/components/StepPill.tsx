@@ -9,7 +9,11 @@ type Props = { step: number; total?: number; t: number; tIn: number; opacity?: n
 export const StepPill: React.FC<Props> = ({ step, total = 8, t, tIn, opacity = 1, backing = 0 }) => {
   const s = springAt(t, tIn, SPRING.pill);
   return (
-    <div data-qa="pill" style={{ position: "absolute", left: PILL_POS.x, top: PILL_POS.y, display: "flex", alignItems: "center", gap: 18, opacity }}>
+    <div
+      data-qa="pill"
+      data-qa-text={`BƯỚC ${step}/${total}`}
+      data-qa-dots={Array.from({ length: total }, (_, i) => (i + 1 < step ? "x" : i + 1 === step ? "o" : "-")).join("")}
+      style={{ position: "absolute", left: PILL_POS.x, top: PILL_POS.y, display: "flex", alignItems: "center", gap: 18, opacity }}>
       <div
         style={{
           background: C.panel, color: "#fff", fontFamily: FONT, fontWeight: TYPE.pill.weight, fontSize: TYPE.pill.size,

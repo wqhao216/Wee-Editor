@@ -71,7 +71,7 @@ Tóm lại: mốc đổi dy của plan sớm hoặc muộn 1–7 khung, và plan
 ## Chặng 2 · Hệ thống thiết kế (Remotion)
 
 ```
-node scripts/phan3/render_stills.mjs qa/style 1.0 13.8 49.5 87.5 150.0 168.0   # style frame + log QA
+node scripts/phan3/render_stills.mjs qa/style <các giây ra>   # style frame + log QA (6 mốc: 1.0, 13.8, 49.5, 87.5, 150.0, 168.0)
 python3 -I scripts/phan3/check_stage2.py                                         # tự kiểm -> qa/style/check_report.txt
 ```
 
@@ -182,3 +182,16 @@ python3 -I scripts/phan3/audio_qa.py      # qa/audio_report.txt, qa/audio_timeli
 - Nhạc -16 dB khi không lời; dưới lời -24 dB (đoạn sau báo lỗi nền -20 dB, dưới lời vẫn -24 dB). Attack 80 ms (hạ sớm 80 ms để đủ sâu đúng lúc câu bắt đầu), release 400 ms, gộp câu cách < 0.48 s. 32 câu → 22 khoảng hạ, nhạc bị hạ 135.5 s / 170 s. `audio/stem_ducking_map.json` ghi khoảng, tham số và đường mức 100 Hz; chặng 4B thay mốc câu bằng mốc đo từ file giọng rồi chạy lại `mix_audio.py`.
 - Vì chưa có giọng nên cả mix nâng +18.1 dB; để TP ≤ -1 dBTP, đỉnh chỉ được nén trên stem SFX (nhạc không bị bơm theo SFX): lookahead/giữ 6 ms, nhả 80 ms, trần đỉnh mẫu -1.8 dBFS. Bị nén > 3 dB: 10/139 sự kiện; nhiều nhất ding_end 10.2 dB (chỉ phần attack).
 - Kết quả (`qa/audio_report.txt`): mix -16.02 LUFS / -1.67 dBTP; track AAC 320 kbps trong mp4 -16.03 LUFS / -1.61 dBTP. Khoảng 2:27.767–2:28.267 nhạc im hẳn. riser 0 ms, error_buzz 0 ms, ding_end +1 ms so với mốc đặt.
+
+## Giấy phép và nguồn
+
+| Thành phần | Nguồn | Giấy phép / ghi chú |
+|---|---|---|
+| Video quay màn hình | Hải quay, repo footage (private) | Nội bộ nhóm; đã che theo mục 6 |
+| Font Be Vietnam Pro 500–800 | gói npm `@fontsource/be-vietnam-pro` (bản của Google Fonts) | SIL Open Font License 1.1 |
+| Nhạc nền `audio/music_bed.wav` | tự tổng hợp bằng `scripts/phan3/make_music.py` (numpy) | Tác phẩm của nhóm, không dùng mẫu hay bản ghi bên ngoài; không cần ghi công |
+| 14 SFX `audio/sfx/*.wav` | tự tổng hợp bằng `scripts/phan3/make_sfx.py` | Như trên |
+| Easing trong `scripts/phan3/remotion-stub.ts` | chép từ Remotion / React Native (`bezier.js`) | MIT (chỉ dùng cho script kiểm ở Node) |
+| Remotion 4 (dựng hình) | npm `remotion` | Giấy phép riêng của Remotion: nhóm tự đối chiếu điều khoản tại remotion.dev/license |
+
+Plan 4.2–4.3 đề xuất nhạc/SFX từ YouTube Audio Library hoặc Pixabay; nhóm chốt tự tổng hợp (chặng 4A) nên không có link giấy phép bên thứ ba.

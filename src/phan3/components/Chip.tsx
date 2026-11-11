@@ -41,15 +41,18 @@ const overlaps = (a: Rect, b: Rect) => a.x1 < b.x2 && b.x1 < a.x2 && a.y1 < b.y2
 
 /** Vị trí chip: chỗ plan ghi trước ("dưới card" vắt qua mép dưới card, hoặc "trái dưới" ở đáy khối
  * chữ); khi card phủ toàn khung mà chỗ đó đè khung khoanh/nhãn đang hiện thì dời sang chỗ trống kế. */
-const chipPosition = (cue: ChipCue, t: number): Rect => {
+const chipPosition = (cue: ChipCue, t: number): { r: Rect; right: boolean } => {
   const w = chipWidth(cue.text);
   const at = (x: number, y: number): Rect => ({ x1: x, y1: y, x2: x + w, y2: y + CHIP_H });
   const first = cue.where === "underCard" ? at(CARD.x1 + 24, CARD.y2 - 23) : at(TEXT_BLOCK.x1, 846);
   const view = viewAt(t, EASE.camera);
-  if (view.p === 0) return first;
+  if (view.p === 0) return { r: first, right: false };
   const busy = activeCalloutRects(t, view);
-  const candidates = [first, at(1920 - 96 - w, 846), at(1920 - 96 - w, 150), at(TEXT_BLOCK.x1, 150)];
-  return candidates.find((r) => !busy.some((b) => overlaps(r, b))) ?? first;
+  const candidates = [
+    { r: first, right: false }, { r: at(1920 - 96 - w, 846), right: true },
+    { r: at(1920 - 96 - w, 180), right: true }, { r: at(TEXT_BLOCK.x1, 180), right: false },
+  ];
+  return candidates.find((c) => !busy.some((b) => overlaps(c.r, b))) ?? candidates[0];
 };
 
 /** Các chip theo thời gian (trừ chip của FlowDiagram, do FlowDiagram tự đặt). */
@@ -58,8 +61,10 @@ export const ChipLayer: React.FC = () => {
   return (
     <>
       {CHIPS.filter((c) => c.where !== "flowNode3" && t >= c.t_in && t <= c.t_out).map((c, i) => {
-        const r = chipPosition(c, t);
-        return <Chip key={i} text={c.text} variant={c.variant} t={t} t_in={c.t_in} t_out={c.t_out} style={{ left: r.x1, top: r.y1 }} />;
+        const { r, right } = chipPosition(c, t);
+        // chip bên phải neo theo right: 96 (không phụ thuộc bề rộng ước lượng)
+        const pos = right ? { right: 96, top: r.y1, transformOrigin: "right center" } : { left: r.x1, top: r.y1 };
+        return <Chip key={i} text={c.text} variant={c.variant} t={t} t_in={c.t_in} t_out={c.t_out} style={pos} />;
       })}
     </>
   );

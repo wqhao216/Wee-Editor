@@ -58,7 +58,7 @@ export const Counter: React.FC<{ t: number }> = ({ t }) => {
       data-qa="counter"
       data-qa-text={COUNTER.text}
       style={{
-        position: "absolute", right: 96, top: 64, color: C.ok, fontFamily: FONT, fontWeight: 800, fontSize: 72, lineHeight: 1,
+        position: "absolute", right: 96, top: 156, color: C.ok, fontFamily: FONT, fontWeight: 800, fontSize: 72, lineHeight: 1,
         background: "rgba(255,255,255,0.92)", padding: "10px 22px", borderRadius: 20, boxShadow: "0 10px 30px rgba(0,0,0,.12)",
         scale: String(0.8 + 0.2 * s), opacity: o, transformOrigin: "right top",
       }}

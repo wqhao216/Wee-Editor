@@ -5,6 +5,9 @@ import { jumpCuts } from "../timeline";
 import { prog } from "./anim";
 
 const TAG_H = 44;
+// Góc trên phải card, lùi 32px vào trong; không bao giờ ra ngoài vùng an toàn 96px (kể cả khi card phủ toàn khung).
+const tagRight = (c: Rect) => Math.max(1920 - c.x2 + 32, 96);
+const tagTop = (c: Rect) => Math.max(c.y1 + 20, 96);
 
 /** speedTag: chip "×3" góc trên phải card, nền panel, chữ accent; suốt đoạn tua > 1.2×. */
 export const SpeedTag: React.FC<{ label: string; container: Rect; t: number; t_in: number; t_out: number }> = ({ label, container, t, t_in, t_out }) => {
@@ -14,7 +17,7 @@ export const SpeedTag: React.FC<{ label: string; container: Rect; t: number; t_i
       data-qa="speedtag"
       data-qa-text={label}
       style={{
-        position: "absolute", right: 1920 - container.x2 + 20, top: container.y1 + 20, height: TAG_H, boxSizing: "border-box",
+        position: "absolute", right: tagRight(container), top: tagTop(container), height: TAG_H, boxSizing: "border-box",
         padding: "0 16px", display: "flex", alignItems: "center", borderRadius: 12, background: C.panel, color: C.accent,
         fontFamily: FONT, fontWeight: 800, fontSize: 24, opacity: o,
       }}
@@ -33,7 +36,7 @@ export const FreezeCue: React.FC<{ container: Rect; radius: number; t: number; t
     <>
       <div style={{ position: "absolute", left: container.x1, top: container.y1, width: container.x2 - container.x1, height: container.y2 - container.y1, borderRadius: radius, background: "#000", opacity: 0.08 * dim }} />
       {chip > 0 ? (
-        <div data-qa="freezecue" style={{ position: "absolute", right: 1920 - container.x2 + 20, top: container.y1 + 20, width: TAG_H, height: TAG_H, borderRadius: 12, background: C.panel, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, opacity: chip }}>
+        <div data-qa="freezecue" style={{ position: "absolute", right: tagRight(container), top: tagTop(container), width: TAG_H, height: TAG_H, borderRadius: 12, background: C.panel, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, opacity: chip }}>
           <span style={{ width: 6, height: 18, borderRadius: 2, background: C.accent }} />
           <span style={{ width: 6, height: 18, borderRadius: 2, background: C.accent }} />
         </div>

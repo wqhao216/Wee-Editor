@@ -8,7 +8,7 @@
     at         ký tự @
     ngay-sinh  ngày dd/mm/yyyy có năm trước 2015
     blocklist:<loại>  khớp gần đúng (bỏ dấu) một dòng trong input/blocklist.txt
-- qa/ocr_report.txt CHỈ ghi giây và loại cờ. Không ghi, không in chữ OCR
+- qa/ocr_hai_clean_report.txt CHỈ ghi giây và loại cờ. Không ghi, không in chữ OCR
   đọc được, không in nội dung blocklist.
 
 Chạy:  python3 -I scripts/phan3/privacy_qa.py
@@ -242,7 +242,7 @@ def main() -> None:
     lines.append("")
     lines.append("Chi tiết (giây gốc | loại cờ):")
     lines += [f"  {t:7.2f} | {', '.join(results[t])}" for t in sorted(flagged)] or ["  (không có)"]
-    (QA / "ocr_report.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (QA / "ocr_hai_clean_report.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     overview = make_sheet(frames, flagged, (370, 0, 1610, 1080), 0.3, 12)
     cv2.imwrite(str(QA / "privacy_sheet.png"), overview, [cv2.IMWRITE_PNG_COMPRESSION, 9])
@@ -257,7 +257,7 @@ def main() -> None:
         page = make_sheet(chunk, flagged, (600, 0, 1620, 1080), 0.6, 4)
         name = f"{ts[p]:06.1f}-{ts[min(p + per, len(ts)) - 1]:06.1f}.png"
         cv2.imwrite(str(detail_dir / name), page)
-    print(f"Khung có cờ: {len(flagged)}/{len(frames)}. Đã ghi qa/ocr_report.txt, "
+    print(f"Khung có cờ: {len(flagged)}/{len(frames)}. Đã ghi qa/ocr_hai_clean_report.txt, "
           f"qa/privacy_sheet.png, qa/privacy_detail/")
 
 
