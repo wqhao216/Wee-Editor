@@ -195,3 +195,24 @@ python3 -I scripts/phan3/audio_qa.py      # qa/audio_report.txt, qa/audio_timeli
 | Remotion 4 (dựng hình) | npm `remotion` | Giấy phép riêng của Remotion: nhóm tự đối chiếu điều khoản tại remotion.dev/license |
 
 Plan 4.2–4.3 đề xuất nhạc/SFX từ YouTube Audio Library hoặc Pixabay; nhóm chốt tự tổng hợp (chặng 4A) nên không có link giấy phép bên thứ ba.
+
+## Chặng 5 · Bản cuối và checklist mục 10 (`qa/checklist_muc10.txt`)
+
+```
+node scripts/phan3/render_video.mjs out/phan3_v2_video.mp4      # khung PNG -> yuv420p dải TV (~36 phút)
+ffmpeg -i out/phan3_v2_video.mp4 -i audio/mix_no_vo.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -ar 48000 out/phan3_v2.mp4
+node work/export_srt.mjs                                        # out/phan3_v2.srt (từ scripts/phan3/export_srt.ts)
+python3 -I scripts/phan3/contact_sheet.py out/phan3_v2.mp4      # qa/contact_sheet.png
+python3 -I scripts/phan3/ocr_render.py out/phan3_v2.mp4         # qa/ocr_report.txt, qa/ocr_frames.txt
+python3 -I scripts/phan3/checklist10.py                         # qa/checklist_muc10.txt
+```
+
+- `out/phan3_v2.mp4`: H.264 High, CRF 18, 1920×1080, 30 fps, **yuv420p dải TV** (animatic cũ là yuvj420p do khung JPEG; bản cuối render khung PNG), 5100 khung = 170.000 s; AAC 48 kHz, đặt 320 kbps (đo trung bình 262 kbps). Âm thanh = mix tạm không giọng (-16.03 LUFS, -1.61 dBTP).
+- `out/phan3_v2.srt`: 35 khối, đúng các trang phụ đề burn-in (≤ 2 dòng, ≤ 42 ký tự/dòng).
+- Kết quả: **18/19 ô đạt; Bảo mật đạt hết 3/3.** Ô chưa đạt: "Giọng rõ, nhạc duck đúng; tổng -14 LUFS" (chưa có `input/vo/*.wav`, plan 11).
+- Sửa ở chặng này để đạt vùng an toàn 96px: nhãn khung khoanh kẹp vào vùng an toàn (khi zoom sát mép trái), speedTag/chip tạm dừng lùi 32px vào trong card và không ra ngoài 96px, chip đặt bên phải neo `right: 96`, bộ đếm "8/8 ✓" dời xuống y 156. Pill giữ ở (96, 80) theo đúng plan 2.3.
+- Khung khoanh: 34 khung × (đầu, giữa, cuối) đo trên ảnh probe, lệch lớn nhất 1 px.
+- Tên nút: 9/13 xác nhận bằng OCR cắt vùng nút, 4 nút (Tiếp theo, Sao chép thông tin đăng ký tài khoản, Địa chỉ khác, Chuẩn bị) xác nhận bằng mắt (OCR không ổn định với nút nền màu/có con trỏ). Lưu ý: lời đọc câu 24 viết tắt "Giống trụ sở chính" (hệ thống: "Giống địa chỉ trụ sở chính"); giữ nguyên câu chữ của plan.
+- Cỡ điện thoại 50%: 48/50 dòng OCR đọc được; 2 nhãn ("DỄ BẤM NHẦM", "ĐÃ LƯU") OCR kém nhưng xem bằng mắt đọc rõ.
+- OCR bản cuối (1700 khung): không cờ thông tin cá nhân. 1 cờ `sdt-mau` ở 1:44.2 = ô vốn mẫu "100.000.000,000 VNĐ" bị con trỏ gõ đè số 1 (đã xem, khai báo hẹp trong checklist10.py theo loại cờ + giây + vùng).
+- Báo cáo OCR video sạch (Bước A) đổi tên thành `qa/ocr_hai_clean_report.txt`; `qa/ocr_report.txt` giờ là OCR bản cuối (đúng tên plan mục 10).

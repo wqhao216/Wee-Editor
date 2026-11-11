@@ -186,18 +186,31 @@ def bao_mat():
     else:
         r = o.read_text(encoding="utf-8")
         kinds = dict(re.findall(r"^  ([\w:\-()]+): (\d+) khung", r, re.M))
-        bad = {k: v for k, v in kinds.items() if k in pii}
-        # 12-so chỉ chấp nhận ở ô vốn (đã xem); dong-5/6 = tỉnh/phường đã quyết giữ; at = cờ sai đã xem theo cụm
         frames = (QA / "ocr_frames.txt").read_text(encoding="utf-8").splitlines()[1:] if (QA / "ocr_frames.txt").exists() else []
-        twelve = [ln for ln in frames if "12-so" in ln]
-        twelve_ok = all(eval(ln.split(" | ")[2])[1] > 400 and eval(ln.split(" | ")[2])[1] < 700 for ln in twelve) if twelve else True
+        # Cờ sai ĐÃ DUYỆT bằng mắt, gắn chặt loại cờ + khoảng giây + vùng: ô vốn mẫu "100.000.000,000 VNĐ" ở B6
+        # (1:40–1:47, zoom vào ô vốn), con trỏ gõ đè số "1" nên OCR đọc thành chuỗi số bắt đầu bằng 0.
+        REVIEWED = [("sdt-mau", 100.0, 107.0, (1100, 380, 1500, 560), "ô vốn mẫu B6"),
+                    ("12-so", 100.0, 107.0, (900, 380, 1500, 560), "ô vốn mẫu B6")]
+        real, reviewed = [], []
+        for ln in frames:
+            t, fl, b = [x.strip() for x in ln.split("|")]
+            bx = json.loads(b)
+            for k in fl.split(","):
+                if k not in pii and k != "12-so":
+                    continue
+                ok_ = any(k == rk and a <= float(t) <= z and bx[0] >= R[0] and bx[1] >= R[1] and bx[2] <= R[2] and bx[3] <= R[3]
+                          for rk, a, z, R, _ in REVIEWED)
+                (reviewed if ok_ else real).append((float(t), k, bx))
         box("bao_mat", "Quét OCR mỗi 3 khung của out/phan3_v2.mp4: không cờ SĐT 10 số, 12 số, ngày sinh < 2015, dòng blocklist (trừ đã duyệt)",
-            not bad and twelve_ok,
-            f"loại cờ: {', '.join(f'{k}={v}' for k, v in sorted(kinds.items())) or 'không có'}\n"
-            "cờ thông tin cá nhân (họ tên, SĐT, số định danh, email, số nhà, SĐT 10 số, ngày sinh): "
-            f"{sum(int(v) for v in bad.values())}\n"
-            "@: cờ sai (dãy chấm tiến độ, nút ?, mũi tên dropdown, radio, số ① trong nhãn, ô vốn) — đã xem theo cụm\n"
-            "dong-5/dong-6: tỉnh/phường trụ sở và địa chỉ thuế (nhóm quyết giữ theo plan 6.3) và danh sách thả xuống chọn tỉnh")
+            not real,
+            f"1700 khung; loại cờ: {', '.join(f'{k}={v}' for k, v in sorted(kinds.items())) or 'không có'}\n"
+            f"cờ thông tin cá nhân chưa giải thích được: {len(real)}"
+            + "".join(f"\n  LỖI {t:.2f}s {k} {bx}" for t, k, bx in real)
+            + f"\ncờ sai đã duyệt bằng mắt: {len(reviewed)}"
+            + "".join(f"\n  {t:.2f}s {k} {bx}: ô vốn mẫu “100.000.000,000 VNĐ”, con trỏ gõ đè số 1 (work/inspect/final_flag_104.2.png)" for t, k, bx in reviewed)
+            + "\n@: cờ sai (dãy chấm tiến độ, nút ?, mũi tên dropdown, radio, số ① trong nhãn, ô vốn), đã xem theo cụm"
+            "\ndong-5/dong-6: tỉnh/phường trụ sở và địa chỉ thuế (nhóm quyết giữ theo plan 6.3) và danh sách thả xuống chọn tỉnh;"
+            " so với animatic đã duyệt: thêm 1:59–2:01.9 = dòng phường địa chỉ thuế (chip thuế khoán đã dời nên lộ dòng này cho OCR)")
     say()
 
 
