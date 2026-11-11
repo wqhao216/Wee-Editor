@@ -216,3 +216,19 @@ python3 -I scripts/phan3/checklist10.py                         # qa/checklist_m
 - Cỡ điện thoại 50%: 48/50 dòng OCR đọc được; 2 nhãn ("DỄ BẤM NHẦM", "ĐÃ LƯU") OCR kém nhưng xem bằng mắt đọc rõ.
 - OCR bản cuối (1700 khung): không cờ thông tin cá nhân. 1 cờ `sdt-mau` ở 1:44.2 = ô vốn mẫu "100.000.000,000 VNĐ" bị con trỏ gõ đè số 1 (đã xem, khai báo hẹp trong checklist10.py theo loại cờ + giây + vùng).
 - Báo cáo OCR video sạch (Bước A) đổi tên thành `qa/ocr_hai_clean_report.txt`; `qa/ocr_report.txt` giờ là OCR bản cuối (đúng tên plan mục 10).
+
+## Ghép giọng v4 (`scripts/place_vo.py`)
+
+```
+python3 -I scripts/place_vo.py --vo input/vo/phan3_vo_v4.mp3 --cutmap input/vo/vo_cutmap.json --video input/video/phan3_v2_1.mp4
+```
+
+- Đầu vào: `input/vo/phan3_vo_v4.mp3` (ElevenLabs v4, 145.79 s, 37 câu, đọc liền), `input/vo/vo_cutmap.json`; video `input/video/phan3_v2_1.mp4` = `out/phan3_v2.mp4` của chặng 5 (hard link).
+- Lời v4 khác bản nháp `phan3_vo_draft.srt` (nhóm viết lại). **Phụ đề burn-in trên hình vẫn là bản nháp cũ**; SRT mới ở `out/phan3_vo_v4.srt`. Muốn phụ đề trên hình khớp giọng thì phải render lại hình (Subtitles đọc mốc từ SRT mới).
+- Xác minh điểm cắt: chưa có ASR (faster-whisper chưa cài; huggingface.co bị mạng của máy cloud chặn nên không tải được model). Thay bằng: 74/74 điểm cắt nằm trong khoảng lặng (silencedetect -38 dB, 0.12 s); mép tiếng nói lấy ở biên khoảng lặng; tốc độ đọc từng câu so với trung vị 4.24 âm tiết/giây, không câu nào lệch > 30%. Clip nghe thử ở `qa/cut_check/`.
+- Clip: đệm 60 ms trước / ≤ 150 ms sau (không lấn câu kề), fade 10/30 ms, mỗi clip -16 LUFS. Giọng có PLR 15–21 dB nên thêm limiter đỉnh trên từng clip (lookahead 5 ms, nhả 60 ms, trần -2 dBFS đỉnh mẫu): nén tối đa 7.4 dB (câu 03), trung vị 4.2 dB, tổng thời gian nén > 3 dB là 1.8 s trên 37 câu; flat factor 0 (không cắt ngọn).
+- Đặt câu: 36/37 đúng `place_at` không cần chỉnh; câu 07: cắt đệm cuối 110 ms (3.1) + dời sớm 41 ms (3.2). Không atempo, không freeze. Khoảng cách tới mốc câu sau nhỏ nhất 0.200 s. 3 vùng cấm (trước 0.5 s; 147.3–148.3; 167–170) sạch giọng.
+- Trộn (chế độ `stems`): nhạc dựng lại từ `audio/music_bed.wav` (chưa hạ) ở -16 dB so với giọng, hạ thêm 7 dB theo vị trí thật của câu (attack 50 ms, release 300 ms, gộp câu cách < 0.35 s), không hạ trong 146.8–149.0 và 166.5–170.0; SFX giữ nguyên mức chặng 4A (so với giọng). Không dùng track trộn sẵn trong mp4 vì track đó đã hạ nhạc theo mốc lời cũ (sẽ hạ chồng 2 lần, lệch nhịp). `--mode track` làm đúng nguyên văn prompt (hạ cả track của video).
+- Giọng mono đặt giữa với -3 dB mỗi kênh (pan công suất bằng nhau) để loudness của giọng trong mix stereo bằng track giọng mono.
+- Kết quả: giọng -16.05 LUFS / -1.2 dBTP; mix -16.04 LUFS / -3.97 dBTP (ebur128: -16.0 LUFS); `out/phan3_v3_voiced.mp4` hình copy nguyên (md5 luồng video giống hệt bản vào), AAC 192 kbps 48 kHz, 170.000 s.
+- SRT: ngắt ở dấu phẩy trước; vế dài hơn 42 ký tự mới ngắt ở khoảng trắng, ưu tiên trước hư từ (thì, nên, cũng…); 44 khối, mọi dòng ≤ 42 ký tự, ghép lại đúng nguyên văn.
