@@ -79,7 +79,7 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
 ::selection { background: var(--accent-tint); color: var(--ink); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-h1, h2, h3 { margin: 0; text-wrap: balance; font-weight: 700; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; font-weight: 700; }
 p { margin: 0; text-wrap: pretty; }
 ul, ol { margin: 0; padding: 0; }
 svg { flex: none; }
@@ -125,6 +125,7 @@ svg { flex: none; }
 /* ---------- Buttons and links ---------- */
 .btn {
   display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px;
+  font: inherit; border: 0; cursor: pointer; background: transparent;
   border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none;
   transition: transform 0.15s var(--ease-out), background 0.2s, color 0.2s, box-shadow 0.2s;
 }
@@ -294,7 +295,7 @@ mark.pen.wait { background-size: 0% 0.075em; }
 .sim-note { margin-top: 12px; font-size: var(--t-small); color: var(--muted); max-width: 40rem; }
 .sim-stage { margin-top: 32px; min-height: 22rem; }
 .sim-prog { font-size: var(--t-small); color: var(--muted); font-variant-numeric: tabular-nums; }
-.sim-q { margin-top: 8px; font-size: clamp(1.5rem, 3vw, 2.125rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; outline: none; }
+.sim-q { display: inline-block; margin-top: 8px; font-size: clamp(1.5rem, 3vw, 2.125rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; outline: none; }
 .sim-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 .choices { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .choice {
@@ -315,7 +316,7 @@ mark.pen.wait { background-size: 0% 0.075em; }
 
 .sim-result { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
 .sim-result img { border-radius: 16px; background: #FDFDFB; aspect-ratio: 1 / 2; object-fit: cover; width: 100%; }
-.sim-result .who { font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-top: 6px; outline: none; }
+.sim-result .who { display: inline-block; font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; margin-top: 6px; outline: none; }
 .sim-result .who:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 .sim-result .trait { margin-top: 10px; font-size: var(--t-lead); color: var(--ink-2); }
 .sim-result .book { margin-top: 18px; font-weight: 600; }
