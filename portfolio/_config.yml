@@ -1,5 +1,0 @@
-# GitHub Pages: keep design notes out of the published site.
-exclude:
-  - PRODUCT.md
-  - DESIGN.md
-  - README.md
